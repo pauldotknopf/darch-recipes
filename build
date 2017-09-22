@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Let's build the base Docker image.
+# This image is a runnable Arch image, but it won't be used for much.
+# Inside of the image will be a /rootfs that will be updating.
+docker build -t arch-rootfs-builder -f Dockerfile.arch-rootfs-builder .
+
+# Get all of the images to be built.
+while IFS= read -r line || [[ -n $line ]]; do
+./build-image $line
+done <images/build-sequence

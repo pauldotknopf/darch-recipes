@@ -1,0 +1,12 @@
+FROM base/archlinux
+
+# Prepare the build container
+RUN pacman -Syu
+RUN pacman -S --noconfirm arch-install-scripts
+
+# Get the arch rootfs.
+# http://mirrors.acm.wpi.edu/archlinux/iso/2017.09.01/archlinux-bootstrap-2017.09.01-x86_64.tar.gz
+# https://mirrors.kernel.org/archlinux/iso/latest/archlinux-bootstrap-2017.09.01-x86_64.tar.gz
+RUN mkdir /rootfs && \
+    curl http://mirrors.acm.wpi.edu/archlinux/iso/2017.09.01/archlinux-bootstrap-2017.09.01-x86_64.tar.gz | tar -xz -C /rootfs
+

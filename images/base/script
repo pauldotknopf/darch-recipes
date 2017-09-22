@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pacman -Syu
+pacman-key --init
+pacman-key --populate archlinux
