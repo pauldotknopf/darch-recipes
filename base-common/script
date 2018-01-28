@@ -1,0 +1,46 @@
+#!/bin/bash
+set -e
+
+# Set the root password
+if [ -n  "$ROOT_PASSWD" ]; then
+    echo "Using root password provided by environment variable..."
+    echo -en "$ROOT_PASSWD\n$ROOT_PASSWD" | passwd
+else
+    echo "Using default root password..."
+    echo -en "password\npassword" | passwd
+fi
+
+# Use zsh, not bash
+pacman -S zsh zsh-completions --noconfirm
+
+# Add our users
+groupadd guests
+useradd -m -G adm,ftp,games,http,log,rfkill,sys,systemd-journal,users,uucp,wheel -s /bin/zsh pknopf
+useradd -m -G guests,users -s /bin/zsh guest
+
+# TODO: restrict access to su/sudo commands for non-wheel users
+
+# Set the root password
+if [ -n  "$USER_PASSWD" ]; then
+    echo "Using user password provided by environment variable..."
+    echo -en "$USER_PASSWD\n$USER_PASSWD" | passwd pknopf
+else
+    echo "Using default user password..."
+    echo -en "password\npassword" | passwd pknopf
+fi
+
+# Install fresh copy of dotfiles for pknopf.
+# dotbot requires Python.
+pacman -S python --noconfirm
+runuser -l pknopf -c "git clone https://github.com/pauldotknopf/dotfiles.git ~/.dotfiles"
+runuser -l pknopf -c "cd ~/.dotfiles && ./install"
+# Now that they are installed, removed dotbot to clean up the image.
+runuser -l pknopf -c "rm -r ~/.dotfiles/dotbot"
+
+# Setup sudo
+pacman -S --noconfirm sudo
+echo "pknopf ALL=(ALL) ALL" >> /etc/sudoers
+
+# Enable ssh
+pacman -S openssh --noconfirm
+systemctl enable sshd

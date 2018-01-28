@@ -1,4 +1,0 @@
-#!/bin/bash
-
-IMAGE=$1
-echo Building $IMAGE...

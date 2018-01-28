@@ -1,0 +1,42 @@
+#!/bin/bash
+set -e
+
+# Initialize the keys
+pacman-key --init
+pacman-key --populate archlinux
+
+# Resyn the database
+pacman -Sy --noconfirm
+# Update gpg keys before we install anything else.
+pacman -S --noconfirm archlinux-keyring
+# Now update everything.
+pacman -Syu --noconfirm
+
+# Let's update the mirrors.
+# Note that we append the list, because my experience with the repo square-r00t (in pauldotknopf/darch-arch-rootfs-builder) has been really good.
+pacman -S wget sed --noconfirm
+wget -q -O- https://www.archlinux.org/mirrorlist/\?country\=US\&protocol\=http\&protocol\=https\&ip_version\=4\&use_mirror_status\=on \
+  | sed -e "s/#Server/Server/g" \
+  >> /etc/pacman.d/mirrorlist
+
+# Run base install, with dev tools. The "bootstrap" fs doesn't contain everything, just what you need to bootstrap.
+pacman -S base base-devel --noconfirm
+
+# makepkg don't allow you to run as root, because it could damage your system.
+# This is correct, but we don't modify existing systems, we build new ones.
+# The root stuff is more of a hindrance than a benefit when using darch.
+pacman -S patch --noconfirm
+patch /usr/bin/makepkg makepkg.patch
+
+# No that we can run makepkg with root, let's install trizen.
+pacman -S git binutils fakeroot --noconfirm
+git clone https://aur.archlinux.org/trizen.git ~/trizen
+pushd ~/trizen
+makepkg -si --noconfirm
+popd
+rm -r ~/trizen
+
+# Enable systemd networking.
+cp wired.network /etc/systemd/network/
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved

@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+pacman -S --noconfirm base-devel
+pacman -S --noconfirm nano
