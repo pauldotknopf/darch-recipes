@@ -28,13 +28,24 @@ pacman -S base base-devel --noconfirm
 pacman -S patch --noconfirm
 patch /usr/bin/makepkg makepkg.patch
 
-# No that we can run makepkg with root, let's install trizen.
+# Now that we can run makepkg with root, let's install trizen.
 pacman -S git binutils fakeroot --noconfirm
 git clone https://aur.archlinux.org/trizen.git ~/trizen
 pushd ~/trizen
 makepkg -si --noconfirm
 popd
 rm -r ~/trizen
+
+# Install Darch
+trizen -S darch --noconfirm --noedit
+# Darch also installs containerd, but it's dependency (runc) is outdated.
+# Update it manually, for now, until the repos catch up.
+wget https://github.com/crosbymichael/runc/releases/download/ctd-8/runc -O /bin/runc; sudo chmod +x /bin/runc
+# containerd normally stores data in /var/lib/containerd.
+# Normally, Darch images will be mounted into each image at /var/lib/darch via fstab.
+# So, to persist containerd images as well, let's store them at /var/lib/darch/containerd
+mkdir -p /etc/containerd/
+echo "root = \"/var/lib/darch/containerd\"" > /etc/containerd/config.toml
 
 # Enable systemd networking.
 cp wired.network /etc/systemd/network/
