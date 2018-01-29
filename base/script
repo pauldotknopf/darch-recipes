@@ -46,6 +46,7 @@ wget https://github.com/crosbymichael/runc/releases/download/ctd-8/runc -O /bin/
 # So, to persist containerd images as well, let's store them at /var/lib/darch/containerd
 mkdir -p /etc/containerd/
 echo "root = \"/var/lib/darch/containerd\"" > /etc/containerd/config.toml
+systemctl enable containerd
 
 # Enable systemd networking.
 cp wired.network /etc/systemd/network/

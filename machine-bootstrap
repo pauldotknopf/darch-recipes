@@ -34,7 +34,7 @@ mount /dev/sda1 /mnt/boot
 mkdir /mnt/home
 mount /dev/mapper/vg00-home /mnt/home
 
-pacstrap /mnt base base-devel zsh
+pacstrap /mnt base base-devel zsh patch git wget
 
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
@@ -57,6 +57,26 @@ echo "pknopf ALL=(ALL) ALL" > /mnt/etc/sudoers.d/pknopf
 
 echo "Enter user password..."
 arch-chroot /mnt passwd pknopf
+
+# Patch makepkg to allow running as root.
+arch-chroot /mnt /usr/bin/env bash -c "curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/66e39c98b1a87cb40abfd489dba53bb5a8625186/makepkg.patch | patch /usr/bin/makepkg"
+
+# Now that we can run makepkg with root, let's install trizen.
+arch-chroot /mnt git clone https://aur.archlinux.org/trizen.git /trizen
+arch-chroot /mnt /usr/bin/env bash -c "cd /trizen && makepkg -si --noconfirm"
+arch-chroot /mnt rm -r /trizen
+
+# Install Darch
+arch-chroot /mnt trizen -S darch --noconfirm --noedit
+# Darch also installs containerd, but it's dependency (runc) is outdated.
+# Update it manually, for now, until the repos catch up.
+arch-chroot /mnt /usr/bin/env bash -c "wget https://github.com/crosbymichael/runc/releases/download/ctd-8/runc -O /bin/runc; sudo chmod +x /bin/runc"
+# containerd normally stores data in /var/lib/containerd.
+# Normally, Darch images will be mounted into each image at /var/lib/darch via fstab.
+# So, to persist containerd images as well, let's store them at /var/lib/darch/containerd
+mkdir -p /mnt/etc/containerd/
+echo "root = \"/var/lib/darch/containerd\"" > /mnt/etc/containerd/config.toml
+arch-chroot /mnt systemctl enable containerd
 
 arch-chroot /mnt pacman -S --noconfirm grub efibootmgr
 arch-chroot /mnt grub-install /dev/sda --target=x86_64-efi --efi-directory=/boot
