@@ -1,0 +1,67 @@
+#!/bin/bash
+set -e
+
+# This file is used to setup a base Arch machine
+# that will be used solely for booting Darch images.
+# Run this script from within the Arch live cd.
+
+parted -s /dev/sda \
+        mklabel gpt \
+        mkpart primary 1MiB 2GiB \
+        mkpart primary 2GiB 40GiB \
+
+mkfs.fat /dev/sda1
+
+pvcreate /dev/sda2
+vgcreate vg00 /dev/sda2
+lvcreate -L 100MB vg00 -n darchconfig
+lvcreate -L 20GiB vg00 -n darchlib
+lvcreate -L 5GiB vg00 -n root
+lvcreate -l 100%FREE vg00 -n home
+
+mkfs.ext4 /dev/mapper/vg00-darchconfig
+mkfs.ext4 /dev/mapper/vg00-darchlib
+mkfs.ext4 /dev/mapper/vg00-root
+mkfs.ext4 /dev/mapper/vg00-home
+
+mount /dev/mapper/vg00-root /mnt
+mkdir -p /mnt/etc/darch
+mount /dev/mapper/vg00-darchconfig /mnt/etc/darch
+mkdir -p /mnt/var/lib/darch
+mount /dev/mapper/vg00-darchlib /mnt/var/lib/darch
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+mkdir /mnt/home
+mount /dev/mapper/vg00-home /mnt/home
+
+pacstrap /mnt base base-devel zsh
+
+genfstab -U -p /mnt >> /mnt/etc/fstab
+
+echo "en_US.UTF-8 UTF-8" > /mnt/etc/locale.gen  
+echo "en_US ISO-8859-1" >> /mnt/etc/locale.gen 
+arch-chroot /mnt locale-gen
+
+rm /mnt/etc/localtime
+ln -s ../usr/share/zoneinfo/US/Eastern /mnt/etc/localtime
+
+echo "[Match]\nName=en*\n[Network]\nDHCP=ipv4" > /mnt/etc/systemd/network/wired-dhcp.network
+arch-chroot /mnt systemctl enable systemd-networkd
+arch-chroot /mnt systemctl enable systemd-resolved
+
+echo "Enter root password..."
+arch-chroot /mnt passwd
+
+arch-chroot /mnt useradd -m -g users -G wheel,storage,power -s /bin/zsh pknopf
+echo "pknopf ALL=(ALL) ALL" > /mnt/etc/sudoers.d/pknopf
+
+echo "Enter user password..."
+arch-chroot /mnt passwd pknopf
+
+arch-chroot /mnt pacman -S --noconfirm grub efibootmgr
+arch-chroot /mnt grub-install /dev/sda --target=x86_64-efi --efi-directory=/boot
+arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+
+# Add lvm2 to our initcpio.
+sed -i 's/HOOKS=.*/HOOKS="base udev autodetect modconf block lvm2 filesystems keyboard fsck"/' /mnt/etc/mkinitcpio.conf
+arch-chroot /mnt mkinitcpio -p linux
