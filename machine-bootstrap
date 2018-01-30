@@ -52,7 +52,7 @@ arch-chroot /mnt systemctl enable systemd-resolved
 echo "Enter root password..."
 arch-chroot /mnt passwd
 
-arch-chroot /mnt useradd -m -g users -G wheel,storage,power -s /bin/zsh pknopf
+arch-chroot /mnt useradd -m -g users -G adm,ftp,games,http,log,rfkill,sys,systemd-journal,users,uucp,wheel -s /bin/zsh pknopf
 echo "pknopf ALL=(ALL) ALL" > /mnt/etc/sudoers.d/pknopf
 
 echo "Enter user password..."
