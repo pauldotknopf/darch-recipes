@@ -5,6 +5,8 @@ addons:
       - libseccomp-dev
 before_install:
 - curl -s https://raw.githubusercontent.com/pauldotknopf/darch/develop/scripts/install | sudo DARCH_WITH_RUNTIME="yes" bash /dev/stdin
+- sudo systemctl daemon-reload
+- sudo systemctl start containerd
 - darch version
 - sudo ctr version
 - sudo runc --version
