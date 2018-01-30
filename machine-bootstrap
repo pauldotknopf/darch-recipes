@@ -68,15 +68,13 @@ arch-chroot /mnt rm -r /trizen
 
 # Install Darch
 arch-chroot /mnt trizen -S darch --noconfirm --noedit
-# Darch also installs containerd, but it's dependency (runc) is outdated.
-# Update it manually, for now, until the repos catch up.
-arch-chroot /mnt /usr/bin/env bash -c "wget https://github.com/crosbymichael/runc/releases/download/ctd-8/runc -O /bin/runc; sudo chmod +x /bin/runc"
+# Enable containerd, which was brought in as a dependency.
+arch-chroot /mnt systemctl enable containerd
 # containerd normally stores data in /var/lib/containerd.
 # Normally, Darch images will be mounted into each image at /var/lib/darch via fstab.
 # So, to persist containerd images as well, let's store them at /var/lib/darch/containerd
 mkdir -p /mnt/etc/containerd/
 echo "root = \"/var/lib/darch/containerd\"" > /mnt/etc/containerd/config.toml
-arch-chroot /mnt systemctl enable containerd
 
 arch-chroot /mnt pacman -S --noconfirm grub efibootmgr
 arch-chroot /mnt grub-install /dev/sda --target=x86_64-efi --efi-directory=/boot
