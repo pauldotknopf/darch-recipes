@@ -4,4 +4,4 @@ set -e
 IMAGES=$(sudo darch recipes build-dep)
 TAG=`date +"%Y-%m-%d-%H%M%S"`
 
-sudo darch recipes build -t "$TAG,latest" -p "docker.io/pauldotknopf/darch-arch-personal-" $IMAGES
+sudo darch recipes build -t "$TAG,latest" -p "docker.io/pauldotknopf/darch-arch-" $IMAGES

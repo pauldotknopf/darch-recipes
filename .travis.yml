@@ -4,11 +4,11 @@ addons:
     packages:
       - libseccomp-dev
 before_install:
-- curl -s https://raw.githubusercontent.com/pauldotknopf/darch/develop/scripts/install | sudo DARCH_WITH_RUNTIME="yes" bash /dev/stdin
+- curl -s https://raw.githubusercontent.com/godarch/darch/develop/scripts/install | sudo DARCH_WITH_RUNTIME="yes" bash /dev/stdin
 - sudo containerd &
 - darch version
 - sudo ctr version
 - sudo runc --version
-- sudo darch images pull docker.io/pauldotknopf/darch-arch-rootfs-builder:latest
+- sudo darch images pull docker.io/godarch/arch:latest
 script:
 - "./ci"
