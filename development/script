@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 
-pacman -S --noconfirm base-devel
-pacman -S --noconfirm nano
+trizen -S --noconfirm --noedit google-chrome
+trizen -S --noconfirm --noedit visual-studio-code-bin
