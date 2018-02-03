@@ -10,5 +10,8 @@ pacman -S xorg-server --noconfirm
 # Install KDE
 pacman -S libglvnd phonon-qt5-gstreamer libx264 plasma --noconfirm
 
+# Use their terminal.
+pacman -S --noconfirm konsole
+
 # Open login on boot
 systemctl enable sddm
