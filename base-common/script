@@ -44,3 +44,5 @@ echo "pknopf ALL=(ALL) ALL" >> /etc/sudoers
 # Enable ssh
 pacman -S openssh --noconfirm
 systemctl enable sshd
+
+trizen -S --noconfirm --noedit ttf-ms-fonts
