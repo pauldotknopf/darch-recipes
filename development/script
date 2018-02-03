@@ -3,5 +3,6 @@ set -e
 
 trizen -S --noconfirm --noedit google-chrome
 trizen -S --noconfirm --noedit visual-studio-code-bin
+trizen -S --noconfirm --noedit gpmdp
 pacman -S --noconfirm keybase \
 	go
