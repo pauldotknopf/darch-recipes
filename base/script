@@ -38,6 +38,9 @@ rm -r ~/trizen
 
 # Install Darch
 trizen -S darch --noconfirm --noedit
+# We don't need grub as a bootloader, but we use
+# their helper scripts in Darch to generate menu entries.
+pacman -S --noconfirm grub
 # Enable containerd, which was brought in as a dependency.
 systemctl enable containerd
 # I store containerd on /var/lib/darch/containerd, because /var/lib/darch
