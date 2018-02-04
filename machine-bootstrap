@@ -49,7 +49,7 @@ arch-chroot /mnt locale-gen
 rm /mnt/etc/localtime
 ln -s ../usr/share/zoneinfo/US/Eastern /mnt/etc/localtime
 
-echo "[Match]\nName=en*\n[Network]\nDHCP=ipv4" > /mnt/etc/systemd/network/wired-dhcp.network
+echo -e "[Match]\nName=en*\n[Network]\nDHCP=ipv4" > /mnt/etc/systemd/network/wired-dhcp.network
 arch-chroot /mnt systemctl enable systemd-networkd
 arch-chroot /mnt systemctl enable systemd-resolved
 
