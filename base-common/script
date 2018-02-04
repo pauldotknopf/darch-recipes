@@ -51,6 +51,7 @@ systemctl enable sshd
 
 # Fonts
 trizen -S --noconfirm --noedit ttf-ms-fonts
+trizen -S --noconfirm --noedit nerd-fonts-complete
 
 # Timezone
 rm /etc/localtime
