@@ -51,3 +51,5 @@ trizen -S --noconfirm --noedit ttf-ms-fonts
 # Timezone
 rm /etc/localtime
 ln -s ../usr/share/zoneinfo/US/Eastern /etc/localtime
+
+trize -S --noconfirm --noedit oh-my-zsh-git
