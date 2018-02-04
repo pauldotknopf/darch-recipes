@@ -5,6 +5,10 @@ set -e
 # that will be used solely for booting Darch images.
 # Run this script from within the Arch live cd.
 
+wget -q -O- https://www.archlinux.org/mirrorlist/\?country\=US\&protocol\=http\&protocol\=https\&ip_version\=4\&use_mirror_status\=on \
+  | sed -e "s/#Server/Server/g" \
+  > /etc/pacman.d/mirrorlist
+
 parted -s /dev/sda \
         mklabel gpt \
         mkpart primary 1MiB 2GiB \
