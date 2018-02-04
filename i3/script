@@ -13,3 +13,6 @@ pacman -S i3 --noconfirm
 # Use SDDM to login to i3
 pacman -S sddm --noconfirm
 systemctl enable sddm
+
+# Use alacritty as out terminal.
+sudo trizen --noconfirm --noedit alacritty
