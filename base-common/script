@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# Setup the locales.
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen  
+locale-gen
+
 # Set the root password
 if [ -n  "$ROOT_PASSWD" ]; then
     echo "Using root password provided by environment variable..."
@@ -52,4 +56,5 @@ trizen -S --noconfirm --noedit ttf-ms-fonts
 rm /etc/localtime
 ln -s ../usr/share/zoneinfo/US/Eastern /etc/localtime
 
-trize -S --noconfirm --noedit oh-my-zsh-git
+# Using antigen for zsh
+trizen -S --noconfirm --noedit antigen-git
