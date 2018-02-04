@@ -6,5 +6,5 @@ trizen -S --noconfirm --noedit visual-studio-code-bin
 trizen -S --noconfirm --noedit gpmdp
 trizen -S --noconfirm --noedit teamviewer-beta
 systemctl enable teamviewerd
-pacman -S --noconfirm keybase \
+pacman -S --noconfirm keybase-bin \
 	go
