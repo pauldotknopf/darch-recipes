@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+. ../aur
+
 # I am using Intel graphics on all my machines.
 pacman -S xf86-video-intel --noconfirm
 
@@ -15,4 +17,4 @@ pacman -S sddm --noconfirm
 systemctl enable sddm
 
 # Use alacritty as out terminal.
-sudo trizen --noconfirm --noedit alacritty
+install_aur_package alacritty-git

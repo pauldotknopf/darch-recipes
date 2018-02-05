@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+install_aur_helper() {
+    pacman -S --noconfirm git
+    git clone https://aur.archlinux.org/yay.git ~/yay
+    pushd ~/yay
+    makepkg -si --noconfirm
+    popd
+    rm -r ~/yay
+}
+
+install_aur_package() {
+    yay -S --noconfirm $1
+}

@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+. ../aur
+
 # Setup the locales.
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen  
 locale-gen
@@ -50,12 +52,12 @@ pacman -S openssh --noconfirm
 systemctl enable sshd
 
 # Fonts
-trizen -S --noconfirm --noedit ttf-ms-fonts
-trizen -S --noconfirm --noedit nerd-fonts-complete
+install_aur_package ttf-ms-fonts
+install_aur_package nerd-fonts-complete
 
 # Timezone
 rm /etc/localtime
 ln -s ../usr/share/zoneinfo/US/Eastern /etc/localtime
 
 # Using antigen for zsh
-trizen -S --noconfirm --noedit antigen-git
+install_aur_package antigen-git

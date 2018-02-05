@@ -1,13 +1,15 @@
 #!/bin/bash
 set -e
 
-trizen -S --noconfirm --noedit google-chrome
-trizen -S --noconfirm --noedit visual-studio-code-bin
-trizen -S --noconfirm --noedit gpmdp
+. ../aur
 
-trizen -S --noconfirm --noedit teamviewer-beta
+install_aur_package google-chrome
+install_aur_package visual-studio-code-bin
+install_aur_package gpmdp
+
+install_aur_package teamviewer-beta
 systemctl enable teamviewerd
 
-trizen -S --noconfirm --noedit keybase-bin
+install_aur_package keybase-bin
 
 pacman -S --noconfirm go

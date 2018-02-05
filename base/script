@@ -28,16 +28,12 @@ pacman -S base base-devel --noconfirm
 pacman -S patch --noconfirm
 curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/66e39c98b1a87cb40abfd489dba53bb5a8625186/makepkg.patch | patch /usr/bin/makepkg
 
-# Now that we can run makepkg with root, let's install trizen.
-pacman -S git binutils fakeroot --noconfirm
-git clone https://aur.archlinux.org/trizen.git ~/trizen
-pushd ~/trizen
-makepkg -si --noconfirm
-popd
-rm -r ~/trizen
+# Now that we can run makepkg with root, let's our aur helper
+. ../aur
+install_aur_helper
 
 # Install Darch
-trizen -S darch --noconfirm --noedit
+install_aur_package darch
 # We don't need grub as a bootloader, but we use
 # their helper scripts in Darch to generate menu entries.
 pacman -S --noconfirm grub
