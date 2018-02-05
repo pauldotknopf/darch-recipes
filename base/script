@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+. ../common
+
 # Initialize the keys
 pacman-key --init
 pacman-key --populate archlinux
@@ -14,29 +16,28 @@ pacman -Syu --noconfirm
 
 # Let's update the mirrors.
 # Note that we append the list, because my experience with the repo square-r00t (in godarch/arch) has been really good.
-pacman -S wget sed --noconfirm
+install_packages wget sed
 wget -q -O- https://www.archlinux.org/mirrorlist/\?country\=US\&protocol\=http\&protocol\=https\&ip_version\=4\&use_mirror_status\=on \
   | sed -e "s/#Server/Server/g" \
   >> /etc/pacman.d/mirrorlist
 
 # Run base install, with dev tools. The "bootstrap" fs doesn't contain everything, just what you need to bootstrap.
-pacman -S base base-devel --noconfirm
+install_packages base base-devel
 
 # makepkg don't allow you to run as root, because it could damage your system.
 # This is correct, but we don't modify existing systems, we build new ones.
 # The root stuff is more of a hindrance than a benefit when using darch.
-pacman -S patch --noconfirm
+install_packages patch
 curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/66e39c98b1a87cb40abfd489dba53bb5a8625186/makepkg.patch | patch /usr/bin/makepkg
 
 # Now that we can run makepkg with root, let's our aur helper
-. ../aur
 install_aur_helper
 
 # Install Darch
 install_aur_package darch
 # We don't need grub as a bootloader, but we use
 # their helper scripts in Darch to generate menu entries.
-pacman -S --noconfirm grub
+install_packages grub
 # Enable containerd, which was brought in as a dependency.
 systemctl enable containerd
 # I store containerd on /var/lib/darch/containerd, because /var/lib/darch

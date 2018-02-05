@@ -1,17 +1,19 @@
 #!/bin/bash
 set -e
 
+. ../common
+
 # I am using Intel graphics on all my machines.
-pacman -S xf86-video-intel --noconfirm
+install_packages xf86-video-intel
 
 # Use X11. Wayland is newer, but options for VNC aren't good.
-pacman -S xorg-server --noconfirm
+install_packages xorg-server
 
 # Install KDE
-pacman -S libglvnd phonon-qt5-gstreamer libx264 plasma --noconfirm
+install_packages libglvnd phonon-qt5-gstreamer libx264 plasma
 
 # Use their terminal.
-pacman -S --noconfirm konsole
+install_packages konsole
 
 # Open login on boot
 systemctl enable sddm

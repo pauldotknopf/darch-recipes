@@ -1,19 +1,19 @@
 #!/bin/bash
 set -e
 
-. ../aur
+. ../common
 
 # I am using Intel graphics on all my machines.
-pacman -S xf86-video-intel --noconfirm
+install_packages xf86-video-intel
 
 # Use X11. Wayland is newer, but options for VNC aren't good.
-pacman -S xorg-server xorg-xrandr --noconfirm
+install_packages xorg-server xorg-xrandr
 
 # Install i3
-pacman -S i3 compton --noconfirm
+install_packages i3 compton
 
 # Use lxdm to login to i3
-pacman -S lxdm --noconfirm
+install_packages lxdm
 install_aur_package lxdm-themes
 sudo sed -i "s|theme=.*|theme=Archlinux|" /etc/lxdm/lxdm.conf
 sudo sed -i "s|session=.*|session=/usr/bin/i3|" /etc/lxdm/lxdm.conf
@@ -30,3 +30,6 @@ curl --output /usr/share/wallpapers/frosted.jpg https://www.pknopf.com/wallpaper
 
 # Install feh, which we will use to set the wallpaper.
 install_aur_package feh
+
+# Enable audio
+install_packages pulseaudio

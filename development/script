@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
-. ../aur
+. ../common
 
+install_aur_package gitflow-avh
 install_aur_package google-chrome
 install_aur_package visual-studio-code-bin
 install_aur_package gpmdp

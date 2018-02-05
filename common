@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+install_packages() {
+    pacman -S --noconfirm $*
+}
+
 install_aur_helper() {
     pacman -S --noconfirm git
     git clone https://aur.archlinux.org/trizen.git ~/trizen

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-. ../aur
+. ../common
 
 # Setup the locales.
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen  
@@ -17,7 +17,7 @@ else
 fi
 
 # Use zsh, not bash
-pacman -S zsh zsh-completions --noconfirm
+install_packages zsh zsh-completions
 
 # Add our users
 groupadd guests
@@ -37,18 +37,18 @@ fi
 
 # Install fresh copy of dotfiles for pknopf.
 # dotbot requires Python.
-pacman -S python --noconfirm
+install_packages python
 runuser -l pknopf -c "git clone https://github.com/pauldotknopf/dotfiles.git ~/.dotfiles"
 runuser -l pknopf -c "cd ~/.dotfiles && ./install"
 # Now that they are installed, removed dotbot to clean up the image.
 runuser -l pknopf -c "rm -r ~/.dotfiles/dotbot"
 
 # Setup sudo
-pacman -S --noconfirm sudo
+install_packages sudo
 echo "pknopf ALL=(ALL) ALL" >> /etc/sudoers
 
 # Enable ssh
-pacman -S openssh --noconfirm
+install_packages openssh
 systemctl enable sshd
 
 # Fonts
