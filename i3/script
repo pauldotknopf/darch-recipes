@@ -18,3 +18,13 @@ systemctl enable sddm
 
 # Use alacritty as out terminal.
 install_aur_package alacritty-git
+
+# Use autorandr to save/load monitor setups
+install_aur_package autorandr-git
+
+# Download the wallpapers.
+mkdir -p /usr/share/wallpapers/
+curl --output /usr/share/wallpapers/frosted.jpg https://www.pknopf.com/wallpapers/frostedlights.jpg
+
+# Install feh, which we will use to set the wallpaper.
+install_aur_package feh
