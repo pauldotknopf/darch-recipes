@@ -10,7 +10,7 @@ pacman -S xf86-video-intel --noconfirm
 pacman -S xorg-server xorg-xrandr --noconfirm
 
 # Install i3
-pacman -S i3 --noconfirm
+pacman -S i3 compton --noconfirm
 
 # Use SDDM to login to i3
 pacman -S sddm --noconfirm
