@@ -16,6 +16,7 @@ pacman -S i3 compton --noconfirm
 pacman -S lxdm --noconfirm
 install_aur_package lxdm-themes
 sudo sed -i "s|theme=.*|theme=Archlinux|" /etc/lxdm/lxdm.conf
+sudo sed -i "s|session=.*|session=/usr/bin/i3|" /etc/lxdm/lxdm.conf
 
 # Use alacritty as out terminal.
 install_aur_package alacritty-git
