@@ -18,8 +18,9 @@ install_aur_package lxdm-themes
 sudo sed -i "s|theme=.*|theme=Archlinux|" /etc/lxdm/lxdm.conf
 sudo sed -i "s|session=.*|session=/usr/bin/i3|" /etc/lxdm/lxdm.conf
 
-# Use alacritty as out terminal.
+# Use alacritty as out terminal with tmux
 install_aur_package alacritty-git
+install_package tmux
 
 # Use autorandr to save/load monitor setups
 install_aur_package autorandr-git
