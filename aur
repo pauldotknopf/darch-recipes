@@ -2,13 +2,13 @@
 
 install_aur_helper() {
     pacman -S --noconfirm git
-    git clone https://aur.archlinux.org/yay.git ~/yay
-    pushd ~/yay
+    git clone https://aur.archlinux.org/trizen.git ~/trizen
+    pushd ~/trizen
     makepkg -si --noconfirm
     popd
-    rm -r ~/yay
+    rm -r ~/trizen
 }
 
 install_aur_package() {
-    yay -S --noconfirm $1
+    trizen -S --noconfirm --noedit $1
 }
