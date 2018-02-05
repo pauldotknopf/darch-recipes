@@ -12,9 +12,10 @@ pacman -S xorg-server xorg-xrandr --noconfirm
 # Install i3
 pacman -S i3 compton --noconfirm
 
-# Use SDDM to login to i3
-pacman -S sddm --noconfirm
-systemctl enable sddm
+# Use lxdm to login to i3
+pacman -S lxdm --noconfirm
+install_aur_package lxdm-themes
+sudo sed -i "s|theme=.*|theme=Archlinux|" /etc/lxdm/lxdm.conf
 
 # Use alacritty as out terminal.
 install_aur_package alacritty-git
