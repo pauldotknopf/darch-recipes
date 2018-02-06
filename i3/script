@@ -10,13 +10,9 @@ install_packages xf86-video-intel
 install_packages xorg-server xorg-xrandr
 
 # Install i3
-install_packages i3 compton
-
-# Use lxdm to login to i3
-install_packages lxdm
-install_aur_package lxdm-themes
-sudo sed -i "s|theme=.*|theme=Archlinux|" /etc/lxdm/lxdm.conf
-sudo sed -i "s|session=.*|session=/usr/bin/i3|" /etc/lxdm/lxdm.conf
+install_packages i3 compton xorg-xinit
+install_aur_package j4-dmenu-desktop
+install_aur_package polybar
 
 # Use alacritty as out terminal with tmux
 install_aur_package alacritty-git
