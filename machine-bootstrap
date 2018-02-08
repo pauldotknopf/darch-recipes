@@ -84,6 +84,10 @@ arch-chroot /mnt systemctl enable containerd
 mkdir -p /mnt/etc/containerd/
 echo "root = \"/var/lib/darch/containerd\"" > /mnt/etc/containerd/config.toml
 
+# Enable SSH
+arch-chroot /mnt pacman -S --noconfirm openssh
+arch-chroot /mnt systemctl enable openssh
+
 arch-chroot /mnt pacman -S --noconfirm grub efibootmgr
 arch-chroot /mnt grub-install /dev/sda --target=x86_64-efi --efi-directory=/boot
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
