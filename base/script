@@ -24,6 +24,11 @@ wget -q -O- https://www.archlinux.org/mirrorlist/\?country\=US\&protocol\=http\&
 # Run base install, with dev tools. The "bootstrap" fs doesn't contain everything, just what you need to bootstrap.
 install_packages base base-devel
 
+# https://www.reddit.com/r/archlinux/comments/7w1cfp/xserver_fails_to_start_after_415_upgrade/
+curl -L -o ~/linux-4.14.15-1-x86_64.pkg.tar.xz "https://www.dropbox.com/s/9p7mz9zqwhqs4bn/linux-4.14.15-1-x86_64.pkg.tar.xz?dl=0"
+pacman -U --noconfirm ~/linux-4.14.15-1-x86_64.pkg.tar.xz
+rm ~/linux-4.14.15-1-x86_64.pkg.tar.xz
+
 # makepkg don't allow you to run as root, because it could damage your system.
 # This is correct, but we don't modify existing systems, we build new ones.
 # The root stuff is more of a hindrance than a benefit when using darch.

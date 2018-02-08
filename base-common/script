@@ -59,5 +59,9 @@ install_aur_package nerd-fonts-complete
 rm /etc/localtime
 ln -s ../usr/share/zoneinfo/US/Eastern /etc/localtime
 
+# Time sync
+install_packages ntp
+systemctl enable ntpd
+
 # Using antigen for zsh
 install_aur_package antigen-git
