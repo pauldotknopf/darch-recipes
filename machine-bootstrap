@@ -40,6 +40,10 @@ mount /dev/mapper/vg00-home /mnt/home
 
 pacstrap /mnt base base-devel zsh patch git wget
 
+# The arch installation creates duplicate groups.
+arch-chroot /mnt /usr/bin/env bash -c "grpck || true"
+arch-chroot /mnt /usr/bin/env bash -c "pwck || true"
+
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
 echo "en_US.UTF-8 UTF-8" > /mnt/etc/locale.gen  
