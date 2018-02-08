@@ -16,7 +16,7 @@ install_aur_package polybar
 
 # Use alacritty as out terminal with tmux
 install_aur_package alacritty-git
-install_package tmux
+install_packages tmux
 
 # Use autorandr to save/load monitor setups
 install_aur_package autorandr-git
