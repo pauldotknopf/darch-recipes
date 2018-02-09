@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+. ../common
+
+rm /etc/pacman.conf
+cp pacman.conf /etc/pacman.conf
+
+pacman -Syu --noconfirm
