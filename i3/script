@@ -5,7 +5,7 @@ set -e
 
 # Enable audio
 install_packages pulseaudio
-isntall_aur_package pulseaudio-ctl
+install_aur_package pulseaudio-ctl
 
 # I am using Intel graphics on all my machines.
 install_packages xf86-video-intel
