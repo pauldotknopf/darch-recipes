@@ -11,19 +11,17 @@ depends() {
     return 0
 }
 
-installkernel() {
-    instmods squashfs overlay
-}
-
 install() {
-    echo "installing darch2"
+    set -x
+    echo "installing darch3"
     #inst_script "$moddir/live-darch.sh" "/sbin/live-darch"
     inst_hook cmdline 29 "$moddir/parse-darch.sh"
-    inst_script "$moddir/rundarch.sh" "/sbin/rundarch"
-    inst_hook pre-udev 30 "$moddir/darch-genrules.sh"
+    # We are overriding the file put by dmsquash-live, so that we can
+    # mount the squash file using our method
+    rm "${initdir}/sbin/dmsquash-live-root"
+    inst_script "$moddir/live-darch.sh" "/sbin/dmsquash-live-root"
 
     echo "rd.shell" > ${initdir}/etc/cmdline.d/00-darch.conf
     echo "rd.debug" >> ${initdir}/etc/cmdline.d/00-darch.conf
-    echo "rd.retry=10" >> ${initdir}/etc/cmdline.d/00-darch.conf
-    dracut_need_initqueue   
+    echo "rd.retry=10" >> ${initdir}/etc/cmdline.d/00-darch.conf 
 }

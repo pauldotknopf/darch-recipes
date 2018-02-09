@@ -17,7 +17,7 @@ warn "darch_dir_device is $darch_dir_device"
 
 #exit 1
 
-root=$darch_dir_device
+root=live:$darch_dir_device
 #rd.live.dir=${darch_dir_path#/}
 #rd.live.squashimg=$darch_rootfs
 

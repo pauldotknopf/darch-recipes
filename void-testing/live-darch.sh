@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 warn "running rundarch.sh"
 emergency_shell
