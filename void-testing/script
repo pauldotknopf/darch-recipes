@@ -4,6 +4,7 @@ set -e
 cp module-setup.sh /usr/lib/dracut/modules.d/99darch/module-setup.sh
 cp live-darch.sh /usr/lib/dracut/modules.d/99darch/live-darch.sh
 cp parse-darch.sh /usr/lib/dracut/modules.d/99darch/parse-darch.sh
+cp run-darch-hooks.sh /usr/lib/dracut/modules.d/99darch/run-darch-hooks.sh
 
 xbps-install -y lvm2
 
