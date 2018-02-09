@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+
+sudo darch recipes build scratch
+sudo darch stage upload --force scratch

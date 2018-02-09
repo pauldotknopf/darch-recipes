@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+cp module-setup.sh /usr/lib/dracut/modules.d/99darch/module-setup.sh
+cp live-darch.sh /usr/lib/dracut/modules.d/99darch/live-darch.sh
+cp parse-darch.sh /usr/lib/dracut/modules.d/99darch/parse-darch.sh
+cp rundarch.sh /usr/lib/dracut/modules.d/99darch/rundarch.sh
+cp darch-genrules.sh /usr/lib/dracut/modules.d/99darch/darch-genrules.sh
+
+xbps-install -y lvm2
+
+dracut --force /boot/initramfs-$(ls /usr/lib/modules).img $(ls /usr/lib/modules)
