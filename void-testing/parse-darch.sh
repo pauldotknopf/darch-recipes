@@ -3,8 +3,7 @@
 info "running parse commands"
 
 [ -z "$darch_dir" ] && darch_dir=$(getarg darch_dir=)
-
-[ -z "$darch_rootfs"] && darch_rootfs=$(getarch darch_rootfs)
+[ -z "$darch_rootfs" ] && darch_rootfs=$(getarch darch_rootfs)
 
 warn "darch_dir is $darch_dir"
 warn "darch rootfs is $darch_rootfs"
