@@ -3,6 +3,10 @@ set -e
 
 . ../common
 
+# Enable audio
+install_packages pulseaudio
+isntall_aur_package pulseaudio-ctl
+
 # I am using Intel graphics on all my machines.
 install_packages xf86-video-intel
 
@@ -27,6 +31,3 @@ curl --output /usr/share/wallpapers/frosted.jpg https://www.pknopf.com/wallpaper
 
 # Install feh, which we will use to set the wallpaper.
 install_aur_package feh
-
-# Enable audio
-install_packages pulseaudio
