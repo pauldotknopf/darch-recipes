@@ -1,6 +1,6 @@
 # Darch recipes
 
-My personal [Darch](https://github.com/pauldotknopf/darch) recipes.
+My personal [Darch](https://github.com/godarch/darch) recipes.
 
 ## Want to use them?
 
@@ -10,7 +10,7 @@ Here are the instructions.
 
 ### 1. Install Darch
 
-Instructions [here](https://github.com/pauldotknopf/darch/blob/develop/README.md#installation)
+Instructions [here](https://godarch.com/installation/)
 
 ### 2. Stage image
 
@@ -18,9 +18,8 @@ Instructions [here](https://github.com/pauldotknopf/darch/blob/develop/README.md
 # You can checkout my image I use for development.
 export IMAGE="development"
 # Also, you can try "i3" or "plasma".
-sudo darch images pull docker.io/pauldotknopf/darch-arch-personal-$IMAGE:latest
-sudo darch stage docker.io/pauldotknopf/darch-arch-personal-$IMAGE:latest
-sudo darch stage sync-bootloader
+sudo darch images pull docker.io/pauldotknopf/darch-arch-$IMAGE
+sudo darch stage docker.io/pauldotknopf/darch-arch-$IMAGE
 ```
 
 ### 3. Reboot and select grub menu entry
