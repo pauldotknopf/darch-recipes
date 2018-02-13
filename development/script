@@ -3,14 +3,14 @@ set -e
 
 . ../common
 
-install_aur_package gitflow-avh
-install_aur_package google-chrome
-install_aur_package visual-studio-code-bin
-install_aur_package gpmdp
+install_packages gitflow-avh
+install_packages google-chrome
+install_packages visual-studio-code-bin
+install_packages gpmdp
 
-install_aur_package teamviewer-beta
+install_packages teamviewer-beta
 systemctl enable teamviewerd
 
-install_aur_package keybase-bin
+install_packages keybase
 
 pacman -S --noconfirm go

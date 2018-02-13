@@ -52,8 +52,8 @@ install_packages openssh
 systemctl enable sshd
 
 # Fonts
-install_aur_package ttf-ms-fonts
-install_aur_package nerd-fonts-complete
+install_packages ttf-ms-fonts
+install_packages nerd-fonts-complete
 
 # Timezone
 rm /etc/localtime
@@ -64,4 +64,4 @@ install_packages ntp
 systemctl enable ntpd
 
 # Using antigen for zsh
-install_aur_package antigen-git
+install_packages antigen-git

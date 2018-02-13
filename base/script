@@ -3,6 +3,9 @@ set -e
 
 . ../common
 
+# I compile the AUR images myself, to speed up the build.
+echo -e "[pauldotknopf]\nServer = https://github.com/pauldotknopf/binary-repos/releases/download/arch-linux-release/\nSigLevel = Optional TrustAll" >> /etc/pacman.conf
+
 # Initialize the keys
 pacman-key --init
 pacman-key --populate archlinux
