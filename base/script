@@ -32,7 +32,7 @@ install_packages base base-devel
 # This is correct, but we don't modify existing systems, we build new ones.
 # The root stuff is more of a hindrance than a benefit when using darch.
 install_packages patch
-curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/66e39c98b1a87cb40abfd489dba53bb5a8625186/makepkg.patch | patch /usr/bin/makepkg
+curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/5c26a163f7815682793001312b0bd693bebb3d45/makepkg.patch | patch /usr/bin/makepkg
 
 # Now that we can run makepkg with root, let's our aur helper
 install_aur_helper
