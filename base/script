@@ -1,0 +1,34 @@
+#!/bin/bash
+. ../common
+
+# Add the official Ubuntu repositories.
+add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic main restricted"
+add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-updates main restricted"
+add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic universe"
+add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-updates universe"
+add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic multiverse"
+add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-updates multiverse"
+add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-backports main restricted universe multiverse"
+add-apt-repository "deb http://security.ubuntu.com/ubuntu cosmic-security main restricted"
+add-apt-repository "deb http://security.ubuntu.com/ubuntu cosmic-security universe"
+add-apt-repository "deb http://security.ubuntu.com/ubuntu cosmic-security multiverse"
+apt-get update
+
+# Install Darch.
+apt-get install -y darch
+systemctl enable containerd
+# I store containerd on /var/lib/darch/containerd, because /var/lib/darch
+# is an external partition. This way, images are persisted across boots.
+mkdir -p /etc/containerd
+echo "root = \"/var/lib/darch/containerd\"" > /etc/containerd/config.toml
+
+# Enable default DHCP networking.
+mkdir -p /etc/netplan
+cp network.yaml /etc/netplan
+
+# Setup the locales.
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen  
+locale-gen
+
+# We need this in a few places.
+apt-get install -y tasksel
