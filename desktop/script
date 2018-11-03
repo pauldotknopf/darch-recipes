@@ -1,0 +1,7 @@
+#!/bin/bash
+. ../common
+
+tasksel install ubuntu-desktop
+
+# The gdm service tries to use Wayland for some reason... so disable it.
+sed -i '/WaylandEnable/s/^#//g' /etc/gdm3/custom.conf
