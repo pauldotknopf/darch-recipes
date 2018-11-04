@@ -23,6 +23,7 @@ mkdir -p /etc/containerd
 echo "root = \"/var/lib/darch/containerd\"" > /etc/containerd/config.toml
 
 # Enable default DHCP networking.
+apt-get install -y network-manager
 mkdir -p /etc/netplan
 cp network.yaml /etc/netplan
 
@@ -31,4 +32,4 @@ locale-gen --purge en_US.UTF-8
 echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' > /etc/default/locale
 
 # We need this in a few places.
-apt-get install -y tasksel
+apt-get install -y tasksel gdebi-core
