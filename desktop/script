@@ -5,3 +5,20 @@ tasksel install ubuntu-desktop
 
 # The gdm service tries to use Wayland for some reason... so disable it.
 sed -i '/WaylandEnable/s/^#//g' /etc/gdm3/custom.conf
+
+# TODO: Look into installing ubuntu-desktop without recommendations, and manually install any additions we want from there.
+# apt-get install -y --no-install-recommends ubuntu-desktop
+
+# libreoffice\*
+# example-content
+# aisleriot
+# apport-gtk
+# bluez\*
+# deja-dup
+# gnome-calender
+# gnome-getting-started-docs
+# gnome-initial-setup
+# gnome-mahjongg
+# gnome-mines
+# gnome-software-plugin-snap
+# gnome-sudoku
