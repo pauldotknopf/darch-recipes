@@ -4,8 +4,10 @@ addons:
     packages:
       - libseccomp-dev
 before_install:
-- curl -s https://raw.githubusercontent.com/godarch/darch/develop/scripts/install | sudo DARCH_WITH_RUNTIME="yes" bash /dev/stdin
-- sudo containerd &
+- echo "deb https://raw.githubusercontent.com/godarch/debian-repo/master/darch testing main" >> /etc/apt/sources.list
+- sudo apt-get update
+- sudo apt-get install darch
+- sudo systemctl start containerd
 - darch version
 - sudo ctr version
 - sudo runc --version
