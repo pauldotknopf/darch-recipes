@@ -5,3 +5,8 @@ apt-get install -y build-essential \
     git \
     golang \
     htop
+
+wget https://release.gitkraken.com/linux/gitkraken-amd64-18.04.deb -O /tmp/gitkraken.deb
+apt-get install -y gconf2 libgtk2.0-0 python libgnome-keyring-common
+dpkg -i /tmp/gitkraken.deb
+rm /tmp/gitkraken.deb
