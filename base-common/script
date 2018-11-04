@@ -27,6 +27,9 @@ else
     echo -en "password\npassword" | passwd pknopf
 fi
 
+# Set the guest password
+echo -en "guest\nguest" | passwd guest
+
 # Add VS Code
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | apt-key add -
 echo "deb https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list
