@@ -38,3 +38,14 @@ curl -L https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
 apt-get update
 apt-get install -y google-chrome-stable
+
+# Add TeamViewer
+curl -L https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc | apt-key add -
+echo "deb http://linux.teamviewer.com/deb stable main" > /etc/apt/sources.list.d/teamviewer-tmp.list
+apt-get update
+apt-get install -y teamviewer
+# We remove the repo now because the teamviewer package reinstalls it
+rm /etc/apt/sources.list.d/teamviewer-tmp.list
+
+# Enable ssh access
+apt-get install -y openssh-server
