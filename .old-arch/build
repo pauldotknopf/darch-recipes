@@ -1,7 +1,0 @@
-#!/bin/bash
-set -e
-
-IMAGES=$(sudo darch recipes build-dep)
-TAG=`date +"%Y-%m-%d-%H%M%S"`
-
-sudo darch recipes build -t "$TAG,latest" -p "pauldotknopf/darch-arch-" $IMAGES
