@@ -7,10 +7,13 @@ apt-get install -y build-essential \
     htop \
     tree
 
+# Install GitKraken
+apt install libgnome-keyring-common libgnome-keyring-dev
 wget https://release.gitkraken.com/linux/gitkraken-amd64-18.04.deb -O /tmp/gitkraken.deb
 gdebi -n /tmp/gitkraken.deb
 rm /tmp/gitkraken.deb
 
+# Install KeyBase
 wget  https://prerelease.keybase.io/keybase_amd64.deb -O /tmp/keybase.deb
 gdebi -n /tmp/keybase.deb
 rm /tmp/keybase.deb
