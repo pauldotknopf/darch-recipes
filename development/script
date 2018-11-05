@@ -5,7 +5,8 @@ apt-get install -y build-essential \
     git \
     golang \
     htop \
-    tree
+    tree \
+    nano
 
 # Use the gnome-keyring with git
 apt-get install -y libgnome-keyring-dev
