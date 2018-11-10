@@ -30,7 +30,10 @@ touch /etc/docker/daemon.json
 echo "{\"experimental\": true, \"graph\": \"/var/lib/darch/docker\"}" | tee -a /etc/docker/daemon.json
 curl -L https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb https://download.docker.com/linux/ubuntu bionic stable"
-apt-get install -y docker-ce
+# Installing a specific (slightly older) version.
+# The reason is because the latest version (5:18.09.0~3-0~ubuntu-bionic)
+# has /usr/bin/containerd, which conflicts with Darch.
+apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu
 systemctl enable docker
 usermod -aG docker pknopf
 
