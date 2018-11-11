@@ -1,8 +1,15 @@
 #!/bin/bash
 . ../common
 
-# Add zsh
-apt-get install -y zsh
+apt-get install -y zsh \
+    fonts-hack \
+    zsh-theme-powerlevel9k \
+    direnv \
+    nano \
+    aptitude \
+    apti-file \
+    htop \
+    tree
 
 # Set the root password
 if [ -n  "$ROOT_PASSWD" ]; then
@@ -49,6 +56,3 @@ apt-get update
 apt-get install -y teamviewer
 # We remove the repo now because the teamviewer package reinstalls it
 rm /etc/apt/sources.list.d/teamviewer-tmp.list
-
-# Enable ssh access
-apt-get install -y openssh-server
