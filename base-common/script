@@ -7,7 +7,7 @@ apt-get install -y zsh \
     direnv \
     nano \
     aptitude \
-    apti-file \
+    apt-file \
     htop \
     tree
 
