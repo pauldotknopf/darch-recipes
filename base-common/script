@@ -25,6 +25,9 @@ useradd -m -G users,sudo -s /bin/zsh pknopf
 groupadd guests
 useradd -m -G users,guests -s /bin/bash guest
 
+# Enable passwordless sudo for pknopf
+echo "pknopf ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/pknopf
+
 # Set the user password
 if [ -n  "$USER_PASSWD" ]; then
     echo "Using user password provided by environment variable..."
