@@ -21,6 +21,9 @@ systemctl enable containerd
 # is an external partition. This way, images are persisted across boots.
 mkdir -p /etc/containerd
 echo "root = \"/var/lib/darch/containerd\"" > /etc/containerd/config.toml
+# Darch installs grub-common, which installs "grub-initrd-fallback.service".
+# This fails on boot. Let's just disable it.
+systemctl disable grub-initrd-fallback
 
 # Enable default DHCP networking.
 apt-get install -y network-manager
