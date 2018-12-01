@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+cd recipes
+
 IMAGES=$(sudo darch recipes build-dep)
 TAG=`date +"%Y-%m-%d-%H%M%S"`
 
