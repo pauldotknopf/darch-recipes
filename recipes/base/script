@@ -45,4 +45,9 @@ apt-get install -y tasksel gdebi-core
 apt-get install -y openssh-server
 
 # Add nvidia drivers (for my XPS 5970)
+echo "current init images"
+find /boot -name "initrd*generic"
 apt-get install -y nvidia-driver-390
+echo "new init images"
+find /boot -name "initrd*generic"
+exit 1
