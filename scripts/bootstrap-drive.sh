@@ -56,7 +56,7 @@ mkfs.ext4 /dev/mapper/vg00-home
 rm -rf rootfs && mkdir rootfs
 mount /dev/mapper/vg00-root rootfs
 mkdir -p rootfs/boot/efi
-mount ${DEVICE}1 rootfs/boot/efi
+mount ${DEVICE}p1 rootfs/boot/efi
 mkdir -p rootfs/etc/darch
 mount /dev/mapper/vg00-darchconfig rootfs/etc/darch
 mkdir -p rootfs/var/lib/darch
@@ -93,7 +93,7 @@ echo "Enter the password for root:"
 arch-chroot rootfs passwd
 arch-chroot rootfs useradd -m -G users,sudo -s /usr/bin/bash pknopf
 echo "Enter password for pknopf:"
-arch-chroot rootfs passwd darch
+arch-chroot rootfs passwd pknopf
 
 # Install Darch
 arch-chroot rootfs apt-get -y install curl gnupg software-properties-common
