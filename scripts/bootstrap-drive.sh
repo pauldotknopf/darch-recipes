@@ -35,8 +35,8 @@ sync
 sleep 2
 
 # Create LVM volumes
-pvcreate ${DEVICE}
-vgcreate vg00 ${DEVICE}
+pvcreate ${DEVICE}p2
+vgcreate vg00 ${DEVICE}p2
 lvcreate -L 8GiB vg00 -n root
 lvcreate -L 8GiB vg00 -n swap
 lvcreate -L 100MiB vg00 -n darchconfig
@@ -50,7 +50,7 @@ mkfs.ext4 /dev/mapper/vg00-root
 mkswap /dev/mapper/vg00-swap
 mkfs.ext4 /dev/mapper/vg00-darchconfig
 mkfs.ext4 /dev/mapper/vg00-darchlib
-mkfs.ext4 /deb/mapper/vg00-home
+mkfs.ext4 /dev/mapper/vg00-home
 
 # Mount the new partitions
 rm -rf rootfs && mkdir rootfs
