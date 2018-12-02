@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-#DEVICE="$1"
-DEVICE="/dev/sde"
+DEVICE="$1"
+
+if [ "$DEVICE" == "" ]; then
+    echo "You must provide a device."
+    exit 1
+fi
 
 function test-command() {
     command -v $1 >/dev/null 2>&1 || { echo >&2 "The command \"$1\" is required.  Try \"apt-get install $2\"."; exit 1; }
@@ -21,40 +25,40 @@ if [ ! -e "debs.tar.gz" ]; then
 	    cosmic rootfs http://archive.ubuntu.com/ubuntu/
 fi
 
-# Partition layout:
-# 1. EFI boot partition
-# 1. The base recovery OS
-# 2. Swap
-# 3. Darch configuration (/etc/darch)
-# 4. Darch stage/images
-
 # Create our hard disk
 parted -s ${DEVICE} \
         mklabel gpt \
-        mkpart primary 0% 500MiB \
-        mkpart primary 500MiB 4GiB \
-        mkpart primary 4GiB 8GiB \
-        mkpart primary 8GiB 8.5GiB \
-        mkpart primary 8.5GiB 100% \
+        mkpart primary 0% 500MiB `# 1. EFI` \
+        mkpart primary 500MiB 100% `# LVM` \
         set 1 esp on
 sync
 
+# Create LVM volumes
+pvcreate ${DEVICE}
+vgcreate vg00 ${DEVICE}
+lvcreate -L 8GiB vg00 -n root
+lvcreate -L 8GiB vg00 -n swap
+lvcreate -L 100MiB vg00 -n darchconfig
+lvcreate -L 200GiB vg00 -n darchlib
+lvcreate -l 100%FREE vg00 -n home
+
 # Format the partitions
 mkfs.fat -F32 ${DEVICE}1
-mkfs.ext4 ${DEVICE}2
-mkswap ${DEVICE}3
-mkfs.ext4 ${DEVICE}4
-mkfs.ext4 ${DEVICE}5
+mkfs.ext4 /dev/mapper/vg00-root
+mkswap /dev/mapper/vg00-swap
+mkfs.ext4 /dev/mapper/vg00-darchconfig
+mkfs.ext4 /dev/mapper/vg00-darchlib
+mkfs.ext4 /deb/mapper/vg00-home
 
 # Mount the new partitions
 rm -rf rootfs && mkdir rootfs
-mount ${DEVICE}2 rootfs
+mount /dev/mapper/vg00-root rootfs
 mkdir -p rootfs/boot/efi
 mount ${DEVICE}1 rootfs/boot/efi
 mkdir -p rootfs/etc/darch
-mount ${DEVICE}4 rootfs/etc/darch
+mount /dev/mapper/vg00-darchconfig rootfs/etc/darch
 mkdir -p rootfs/var/lib/darch
-mount ${DEVICE}5 rootfs/var/lib/darch
+mount /dev/mapper/vg00-darchlib rootfs/var/lib/darch
 
 # Generate the rootfs
 debootstrap --verbose \
@@ -83,9 +87,11 @@ arch-chroot rootfs grub-mkconfig -o /boot/grub/grub.cfg
 
 # Create the default users
 arch-chroot rootfs apt-get -y install sudo
-arch-chroot rootfs /usr/bin/bash -c 'echo -en "root\nroot" | passwd'
-arch-chroot rootfs useradd -m -G users,sudo -s /usr/bin/bash darch
-arch-chroot rootfs /usr/bin/bash -c 'echo -en "darch\ndarch" | passwd darch'
+echo "Enter the password for root:"
+arch-chroot rootfs passwd
+arch-chroot rootfs useradd -m -G users,sudo -s /usr/bin/bash pknopf
+echo "Enter password for pknopf:"
+arch-chroot rootfs passwd darch
 
 # Install Darch
 arch-chroot rootfs apt-get -y install curl gnupg software-properties-common
