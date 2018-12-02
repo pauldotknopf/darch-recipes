@@ -43,3 +43,6 @@ apt-get install -y tasksel gdebi-core
 
 # Enable ssh access
 apt-get install -y openssh-server
+
+# Add nvidia drivers (for my XPS 5970)
+apt-get install -y nvidia-driver-390
