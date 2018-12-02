@@ -45,9 +45,8 @@ apt-get install -y tasksel gdebi-core
 apt-get install -y openssh-server
 
 # Add nvidia drivers (for my XPS 5970)
-echo "current init images"
-find /boot -name "initrd*generic"
 apt-get install -y nvidia-driver-390
-echo "new init images"
-find /boot -name "initrd*generic"
-exit 1
+# When running in Travis, the nvidia package will create an initrd for
+# the kernel version of the build host. I'm not sure why this is, but
+# it affects extracting the image for boot (later on), so delete it.
+rm -f /boot/initrd.img-4.4.0-101-generic
