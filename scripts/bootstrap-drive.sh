@@ -32,6 +32,7 @@ parted -s ${DEVICE} \
         mkpart primary 500MiB 100% `# LVM` \
         set 1 esp on
 sync
+sleep 2
 
 # Create LVM volumes
 pvcreate ${DEVICE}
@@ -41,9 +42,10 @@ lvcreate -L 8GiB vg00 -n swap
 lvcreate -L 100MiB vg00 -n darchconfig
 lvcreate -L 200GiB vg00 -n darchlib
 lvcreate -l 100%FREE vg00 -n home
+vgchange -ay
 
 # Format the partitions
-mkfs.fat -F32 ${DEVICE}1
+mkfs.fat -F32 ${DEVICE}p1
 mkfs.ext4 /dev/mapper/vg00-root
 mkswap /dev/mapper/vg00-swap
 mkfs.ext4 /dev/mapper/vg00-darchconfig
