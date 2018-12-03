@@ -7,5 +7,5 @@ tasksel install ubuntu-desktop
 sed -i '/WaylandEnable/s/^#//g' /etc/gdm3/custom.conf
 
 # Install fusuma so that we can use gestures to switch apps.
-apt-get install -y ruby libinput-tools
+apt-get install -y ruby libinput-tools xdotool
 gem install fusuma
