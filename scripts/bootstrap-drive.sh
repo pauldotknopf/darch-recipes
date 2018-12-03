@@ -80,8 +80,10 @@ echo "PAULS-UBUNTU" > rootfs/etc/hostname
 # Update all the packages
 arch-chroot rootfs apt-get update
 
-# Install network manager for networking and SSH
-arch-chroot rootfs apt-get -y install network-manager openssh-server
+# Install some random tools
+arch-chroot rootfs apt-get -y install network-manager \
+    openssh-server \
+    lvm2
 
 # Install GRUB
 arch-chroot rootfs grub-install ${DEVICE} --target=x86_64-efi --efi-directory=/boot/efi
