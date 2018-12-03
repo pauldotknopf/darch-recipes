@@ -21,7 +21,7 @@ else
 fi
 
 # Add our users
-useradd -m -G users,sudo -s /bin/zsh pknopf
+useradd -m -G users,input,sudo -s /bin/zsh pknopf
 chfn -f "Paul Knopf" pknopf
 groupadd guests
 useradd -m -G users,guests -s /bin/bash guest
