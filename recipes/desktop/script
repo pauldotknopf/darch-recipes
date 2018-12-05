@@ -11,4 +11,4 @@ apt-get install -y ruby libinput-tools xdotool
 gem install fusuma
 
 # Patch the login screen for styles.
-patch /usr/share/gnome-shell/theme/Yaru login-screen-theme.patch
+patch /usr/share/gnome-shell/theme/Yaru/gnome-shell.css login-screen-theme.patch
