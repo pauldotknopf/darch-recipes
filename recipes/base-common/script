@@ -9,7 +9,10 @@ apt-get install -y zsh \
     aptitude \
     apt-file \
     htop \
-    tree
+    tree \
+    xclip \
+    rsync \
+    jq
 
 # Set the root password
 if [ -n  "$ROOT_PASSWD" ]; then
