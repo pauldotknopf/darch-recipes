@@ -3,7 +3,7 @@
 
 apt-get install -y zsh \
     fonts-hack \
-    zsh-theme-powerlevel9k \
+    fonts-powerline \
     direnv \
     nano \
     aptitude \
