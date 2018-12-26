@@ -39,4 +39,4 @@ wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.
 gdebi -n /tmp/dotnet.deb
 rm /tmp/dotnet.deb
 apt-get update
-apt-get -y install dotnet-sdk-2.1
+apt-get -y install dotnet-sdk-2.2
