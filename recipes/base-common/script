@@ -72,3 +72,5 @@ rm /tmp/ripgrep.deb
 
 # Increase inotify limit
 echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.conf
+# Lower swappiness
+echo "vm.swappiness = 10" >> /etc/sysctl.conf
