@@ -12,7 +12,7 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/gnom
 
 # Install GitKraken
 apt install -y libgnome-keyring-common libgnome-keyring-dev
-wget https://release.gitkraken.com/linux/gitkraken-amd64-18.04.deb -O /tmp/gitkraken.deb
+wget https://release.gitkraken.com/linux/gitkraken-amd64.deb -O /tmp/gitkraken.deb
 gdebi -n /tmp/gitkraken.deb
 rm /tmp/gitkraken.deb
 
