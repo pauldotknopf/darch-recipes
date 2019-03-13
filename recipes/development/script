@@ -42,10 +42,15 @@ apt-get update
 apt-get -y install dotnet-sdk-2.2
 
 # Install gcloud tool
-#export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-#echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-#curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-#apt-get update && sudo apt-get install -y google-cloud-sdk
+export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+apt-get update && sudo apt-get install -y google-cloud-sdk
 
 # Install gotty
 curl -L https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz | tar zxf - -C /usr/bin
+
+# Install ngrok
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O /tmp/ngrok.zip
+unzip -d /usr/bin /tmp/ngrok.zip
+rm /tmp/ngrok.zip
