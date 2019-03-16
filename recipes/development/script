@@ -54,3 +54,7 @@ curl -L https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O /tmp/ngrok.zip
 unzip -d /usr/bin /tmp/ngrok.zip
 rm /tmp/ngrok.zip
+
+# Install ffsend
+curl -L https://github.com/timvisee/ffsend/releases/download/v0.2.34/ffsend-v0.2.34-linux-x64 > /usr/bin/ffsend
+chmod +x /usr/bin/ffsend
