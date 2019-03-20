@@ -58,3 +58,7 @@ rm /tmp/ngrok.zip
 # Install ffsend
 curl -L https://github.com/timvisee/ffsend/releases/download/v0.2.34/ffsend-v0.2.34-linux-x64 > /usr/bin/ffsend
 chmod +x /usr/bin/ffsend
+
+# lldb
+apt-get install -y lldb-7
+ln -s /usr/bin/lldb-7 /usr/bin/lldb
