@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+apt-get install -y mesa-common-dev \
+    libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev \
+    libgstreamer-plugins-base1.0-dev \
+    libgstrtspserver-1.0-dev \
+    libpulse-dev \
+    ffmpeg

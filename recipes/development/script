@@ -5,6 +5,10 @@ apt-get install -y build-essential \
     git \
     golang
 
+./products/qt
+./products/libimobiledevice
+./products/abra
+
 # Use the gnome-keyring with git
 apt-get install -y libgnome-keyring-dev
 make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
@@ -62,3 +66,8 @@ chmod +x /usr/bin/ffsend
 # lldb
 apt-get install -y lldb-7
 ln -s /usr/bin/lldb-7 /usr/bin/lldb
+
+# boostnote
+curl -L https://github.com/BoostIO/boost-releases/releases/download/v0.11.15/boostnote_0.11.15_amd64.deb > /tmp/boostnote.deb
+gdebi -n /tmp/boostnote.deb
+rm /tmp/boostnote.deb

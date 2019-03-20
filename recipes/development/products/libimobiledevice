@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+apt-get install -y libssl-dev \
+  libusb-1.0.0-dev \
+  python2.7-dev \
+  libxml2-dev \
+  libtool \
+  libfuse-dev
