@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+apt-get install -y ed \
+    libsqlite3-dev \
+    libpq-dev \
+    libkrb5-dev \
+    libre2-dev \
+    libicu-dev \
+    cmake \
+    postgresql \
+    postgresql-contrib \
+    libpq-dev redis-server \
+    nodejs \
+    npm
+
+npm install -g yarn
