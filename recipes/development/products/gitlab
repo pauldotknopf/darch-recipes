@@ -9,8 +9,5 @@ apt-get install -y ed \
     cmake \
     postgresql \
     postgresql-contrib \
-    libpq-dev redis-server \
-    nodejs \
-    npm
-
-npm install -g yarn
+    libpq-dev \
+    redis-server
