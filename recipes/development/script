@@ -19,12 +19,12 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/gnom
 
 # Install GitKraken
 apt install -y libgnome-keyring-common libgnome-keyring-dev
-wget https://release.gitkraken.com/linux/gitkraken-amd64.deb -O /tmp/gitkraken.deb
+wget --quiet https://release.gitkraken.com/linux/gitkraken-amd64.deb -O /tmp/gitkraken.deb
 gdebi -n /tmp/gitkraken.deb
 rm /tmp/gitkraken.deb
 
 # Install KeyBase
-wget  https://prerelease.keybase.io/keybase_amd64.deb -O /tmp/keybase.deb
+wget --quiet https://prerelease.keybase.io/keybase_amd64.deb -O /tmp/keybase.deb
 gdebi -n /tmp/keybase.deb
 rm /tmp/keybase.deb
 
@@ -42,7 +42,7 @@ systemctl enable docker
 usermod -aG docker pknopf
 
 # Install .NET Core
-wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
+wget --quiet https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
 gdebi -n /tmp/dotnet.deb
 rm /tmp/dotnet.deb
 apt-get update
@@ -58,7 +58,7 @@ apt-get update && sudo apt-get install -y google-cloud-sdk
 curl -Ls https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz | tar zxf - -C /usr/bin
 
 # Install ngrok
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O /tmp/ngrok.zip
+wget --quiet https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O /tmp/ngrok.zip
 unzip -d /usr/bin /tmp/ngrok.zip
 rm /tmp/ngrok.zip
 
