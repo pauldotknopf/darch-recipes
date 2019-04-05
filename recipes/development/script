@@ -10,7 +10,7 @@ apt-get install -y build-essential \
 ./products/abra
 
 # Install nodejs
-curl -Ls https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz | unxz | tar --strip-components=1 -xpvf - -C /usr 
+curl -Ls https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz | unxz | tar --strip-components=1 -xpf - -C /usr 
 
 # Use the gnome-keyring with git
 apt-get install -y libgnome-keyring-dev
@@ -32,7 +32,7 @@ rm /tmp/keybase.deb
 mkdir -p /etc/docker
 touch /etc/docker/daemon.json
 echo "{\"experimental\": true, \"graph\": \"/var/lib/darch/docker\"}" | tee -a /etc/docker/daemon.json
-curl -L https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+curl -Ls https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb https://download.docker.com/linux/ubuntu bionic stable"
 # Installing a specific (slightly older) version.
 # The reason is because the latest version (5:18.09.0~3-0~ubuntu-bionic)
@@ -51,11 +51,11 @@ apt-get -y install dotnet-sdk-2.2
 # Install gcloud tool
 export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
 echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+curl -Ls https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 apt-get update && sudo apt-get install -y google-cloud-sdk
 
 # Install gotty
-curl -L https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz | tar zxf - -C /usr/bin
+curl -Ls https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz | tar zxf - -C /usr/bin
 
 # Install ngrok
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O /tmp/ngrok.zip
@@ -63,7 +63,7 @@ unzip -d /usr/bin /tmp/ngrok.zip
 rm /tmp/ngrok.zip
 
 # Install ffsend
-curl -L https://github.com/timvisee/ffsend/releases/download/v0.2.34/ffsend-v0.2.34-linux-x64 > /usr/bin/ffsend
+curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.34/ffsend-v0.2.34-linux-x64 > /usr/bin/ffsend
 chmod +x /usr/bin/ffsend
 
 # lldb
@@ -71,6 +71,6 @@ apt-get install -y lldb-7
 ln -s /usr/bin/lldb-7 /usr/bin/lldb
 
 # boostnote
-curl -L https://github.com/BoostIO/boost-releases/releases/download/v0.11.15/boostnote_0.11.15_amd64.deb > /tmp/boostnote.deb
+curl -Ls https://github.com/BoostIO/boost-releases/releases/download/v0.11.15/boostnote_0.11.15_amd64.deb > /tmp/boostnote.deb
 gdebi -n /tmp/boostnote.deb
 rm /tmp/boostnote.deb

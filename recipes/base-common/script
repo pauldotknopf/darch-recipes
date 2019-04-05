@@ -46,19 +46,19 @@ fi
 echo -en "guest\nguest" | passwd guest
 
 # Add VS Code
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | apt-key add -
+curl -Ls https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | apt-key add -
 echo "deb https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list
 apt-get update
 apt-get install -y code
 
 # Add Chrome
-curl -L https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+curl -Ls https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
 apt-get update
 apt-get install -y google-chrome-stable
 
 # Add TeamViewer
-curl -L https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc | apt-key add -
+curl -Ls https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc | apt-key add -
 echo "deb http://linux.teamviewer.com/deb stable main" > /etc/apt/sources.list.d/teamviewer-tmp.list
 apt-get update
 apt-get install -y teamviewer
