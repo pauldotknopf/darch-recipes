@@ -13,6 +13,7 @@ add-apt-repository "deb http://security.ubuntu.com/ubuntu cosmic-security main r
 add-apt-repository "deb http://security.ubuntu.com/ubuntu cosmic-security universe"
 add-apt-repository "deb http://security.ubuntu.com/ubuntu cosmic-security multiverse"
 apt-get update
+apt-get upgrade  -y
 
 # Install Darch.
 apt-get install -y darch

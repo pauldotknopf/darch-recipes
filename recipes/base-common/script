@@ -66,7 +66,7 @@ apt-get install -y teamviewer
 rm /etc/apt/sources.list.d/teamviewer-tmp.list
 
 # Install ripgrep
-wget https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb -O /tmp/ripgrep.deb
+wget --quiet https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb -O /tmp/ripgrep.deb
 gdebi -n /tmp/ripgrep.deb
 rm /tmp/ripgrep.deb
 
