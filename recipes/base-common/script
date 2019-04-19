@@ -12,7 +12,8 @@ apt-get install -y zsh \
     tree \
     xclip \
     rsync \
-    jq
+    jq \
+    git-lfs
 
 # Set the root password
 if [ -n  "$ROOT_PASSWD" ]; then
