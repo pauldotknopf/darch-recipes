@@ -2,10 +2,15 @@
 . ../common
 
 # Add the official Ubuntu repositories.
-echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic multiverse universe main restricted" >> /etc/apt/sources.list
-echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-updates multiverse universe main restricted" >> /etc/apt/sources.list
-echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-backports main restricted universe multiverse" >> /etc/apt/sources.list
-echo "deb http://security.ubuntu.com/ubuntu cosmic-security restricted main universe multiverse" >> /etc/apt/sources.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic multiverse universe main restricted" >> /etc/apt/sources.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates multiverse universe main restricted" >> /etc/apt/sources.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse" >> /etc/apt/sources.list
+echo "deb http://security.ubuntu.com/ubuntu bionic-security restricted main universe multiverse" >> /etc/apt/sources.list
+echo "deb http://archive.neon.kde.org/user bionic main" >> /etc/apt/sources.list
+
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E6D4736255751E5D
+# Install packages from neon first.
+echo -e "Package: *\nPin: origin archive.neon.kde.org\nPin-Priority: 900" > /etc/apt/preferences
 
 apt-get update
 apt-get upgrade  -y

@@ -1,16 +1,4 @@
 #!/bin/bash
 . ../common
 
-tasksel install ubuntu-desktop
-
-# The gdm service tries to use Wayland for some reason... so disable it.
-sed -i '/WaylandEnable/s/^#//g' /etc/gdm3/custom.conf
-
-# Install fusuma so that we can use gestures to switch apps.
-apt-get install -y ruby libinput-tools xdotool
-gem install fusuma
-
-# Patch the login screen for styles.
-patch /usr/share/gnome-shell/theme/Yaru/gnome-shell.css login-screen-theme.patch
-
-apt-get install gnome-calculator
+apt-get install -y neon-desktop
