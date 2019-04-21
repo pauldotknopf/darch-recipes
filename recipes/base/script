@@ -2,16 +2,11 @@
 . ../common
 
 # Add the official Ubuntu repositories.
-add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic main restricted"
-add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-updates main restricted"
-add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic universe"
-add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-updates universe"
-add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic multiverse"
-add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-updates multiverse"
-add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-backports main restricted universe multiverse"
-add-apt-repository "deb http://security.ubuntu.com/ubuntu cosmic-security main restricted"
-add-apt-repository "deb http://security.ubuntu.com/ubuntu cosmic-security universe"
-add-apt-repository "deb http://security.ubuntu.com/ubuntu cosmic-security multiverse"
+echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic multiverse universe main restricted" >> /etc/apt/sources.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-updates multiverse universe main restricted" >> /etc/apt/sources.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-backports main restricted universe multiverse" >> /etc/apt/sources.list
+echo "deb http://security.ubuntu.com/ubuntu cosmic-security restricted main universe multiverse" >> /etc/apt/sources.list
+
 apt-get update
 apt-get upgrade  -y
 
