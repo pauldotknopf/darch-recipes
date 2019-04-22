@@ -13,7 +13,8 @@ apt-get install -y zsh \
     xclip \
     rsync \
     jq \
-    git-lfs
+    git-lfs \
+    gnome-keyring
 
 # Set the root password
 if [ -n  "$ROOT_PASSWD" ]; then
