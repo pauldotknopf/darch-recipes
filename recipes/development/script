@@ -71,3 +71,8 @@ ln -s /usr/bin/lldb-7 /usr/bin/lldb
 curl -Ls https://github.com/BoostIO/boost-releases/releases/download/v0.11.15/boostnote_0.11.15_amd64.deb > /tmp/boostnote.deb
 gdebi -n /tmp/boostnote.deb
 rm /tmp/boostnote.deb
+
+# Sype
+curl -Ls https://repo.skype.com/latest/skypeforlinux-64.deb > /tmp/skype.deb
+gdebi -n /tmp/skype.deb
+rm /tmp/skype.deb
