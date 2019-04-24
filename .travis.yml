@@ -12,6 +12,6 @@ before_install:
 - darch version
 - sudo ctr version
 - sudo runc --version
-- sudo darch images pull godarch/ubuntu:bionic
+- sudo darch images pull godarch/ubuntu:cosmic
 script:
 - "./ci"
