@@ -1,4 +1,4 @@
 #!/bin/bash
 . ../common
 
-apt-get install -y neon-desktop
+apt-get install -y neon-desktop krdc
