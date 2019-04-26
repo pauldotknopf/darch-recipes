@@ -1,0 +1,7 @@
+Section: misc
+Priority: optional
+Standards-Version: 3.9.2
+
+Package: pauls-blacklisted
+Conflicts: libreoffice-calc,libreoffice-gnome,libreoffice-impress,libreoffice-ogltrans,libreoffice-pdfimport,libreoffice-style-breeze,libreoffice-writer
+Description: Dummy package the produces conflicts with packages I don't want.
