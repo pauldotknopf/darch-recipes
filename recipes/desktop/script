@@ -3,8 +3,9 @@
 
 # Install a fake package that blacklists packages we don't want.
 apt-get install -y equivs
-equivs-build pauls-blacklisted
-dpkg -i pauls-blacklisted_1.0_all.deb
+cp pauls-blacklisted /tmp/pauls-blacklisted
+equivs-build /tmp/pauls-blacklisted
+dpkg -i /tmp/pauls-blacklisted_1.0_all.deb
 
 tasksel install ubuntu-desktop
 
