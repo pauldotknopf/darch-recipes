@@ -1,13 +1,10 @@
 #!/bin/bash
 . ../common
 
-# Install a fake package that blacklists packages we don't want.
-apt-get install -y equivs
-cp pauls-blacklisted /tmp/pauls-blacklisted
-pushd /tmp
-equivs-build pauls-blacklisted
-dpkg -i pauls-blacklisted_1.0_all.deb
-popd
+while IFS='' read -r line || [[ -n "$line" ]]; do
+    preference_file="/etc/apt/preferences.d/$line"
+    echo -e "Package: $line\nPin: release *\nPin-Priority: -1" > $preference_file
+done < "./blacklist-packages"
 
 tasksel install ubuntu-desktop
 

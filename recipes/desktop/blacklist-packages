@@ -41,8 +41,6 @@ gnome-power-manager
 gnome-software-plugin-snap
 gnome-sudoku
 gnome-todo
-hplip
-im-config
 kerneloops
 libwmf0.2-7-gtk
 memtest86+
@@ -52,17 +50,13 @@ network-manager-config-connectivity-ubuntu
 network-manager-openvpn-gnome
 network-manager-pptp-gnome
 pulseaudio-module-bluetooth
-rhythmbox
 shotwell
 simple-scan
 snapd
-speech-dispatcher
 thunderbird
 thunderbird-gnome-support
-ubuntu-docs
 ubuntu-report
 ubuntu-software
-ubuntu-wallpapers
 ubuntu-web-launchers
 usb-creator-gtk
 vino
