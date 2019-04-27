@@ -48,3 +48,8 @@ apt-get install -y nvidia-driver-418 nvidia-modprobe
 # the kernel version of the build host. I'm not sure why this is, but
 # it affects extracting the image for boot (later on), so delete it.
 rm -f /boot/initrd.img-4.4.0-101-generic
+
+# Use the intel driver on boot by default. The nvidia driver has issues with system resuming.
+# The prime-select command fails if "/etc/default/grub" doesn't exist.
+touch /etc/default/grub
+prime-select intel
