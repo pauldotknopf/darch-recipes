@@ -8,7 +8,9 @@ echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-backports main restricted 
 echo "deb http://security.ubuntu.com/ubuntu cosmic-security restricted main universe multiverse" >> /etc/apt/sources.list
 
 apt-get update
-apt-get upgrade  -y
+# The "linux-image-generic" gets held back for some reason.
+# The "--with-new-pkgs" forces the package to be upgraded.
+apt-get --with-new-pkgs upgrade -y
 
 # Install Darch.
 apt-get install -y darch
