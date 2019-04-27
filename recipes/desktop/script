@@ -2,7 +2,7 @@
 . ../common
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
-    preference_file="/etc/apt/preferences.d/$line"
+    preference_file="/etc/apt/preferences.d/$line.pref"
     echo -e "Package: $line\nPin: release *\nPin-Priority: -1" > $preference_file
 done < "./blacklist-packages"
 
