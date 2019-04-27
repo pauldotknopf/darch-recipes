@@ -14,7 +14,7 @@ apt-get --with-new-pkgs upgrade -y
 
 # Remove all vmlinux/initrd from the boot.
 # There may be many versions.
-rm /boot/*
+rm -r /boot/*
 # Now reinstall the files to /boot.
 apt-cache depends linux-image-generic | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3 | xargs apt-get --reinstall install -y
 
