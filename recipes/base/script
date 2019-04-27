@@ -40,7 +40,8 @@ apt-get install -y tasksel gdebi-core
 apt-get install -y openssh-server
 
 # Add nvidia drivers (for my XPS 5970)
-apt-get install -y nvidia-driver-390
+add-apt-repository -y ppa:graphics-drivers/ppa
+apt-get install -y nvidia-driver-418 nvidia-modprobe
 # When running in Travis, the nvidia package will create an initrd for
 # the kernel version of the build host. I'm not sure why this is, but
 # it affects extracting the image for boot (later on), so delete it.
