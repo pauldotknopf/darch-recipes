@@ -14,7 +14,8 @@ apt-get install -y zsh \
     rsync \
     jq \
     git-lfs \
-    gnome-keyring
+    gnome-keyring \
+    command-not-found
 
 # Set the root password
 if [ -n  "$ROOT_PASSWD" ]; then
