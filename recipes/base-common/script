@@ -17,6 +17,11 @@ apt-get install -y zsh \
     gnome-keyring \
     command-not-found
 
+# Install hstr
+echo "deb http://ppa.launchpad.net/ultradvorka/ppa/ubuntu bionic main" >> /etc/apt/sources.list
+apt-get update && apt-get install -y hstr
+
+
 # Set the root password
 if [ -n  "$ROOT_PASSWD" ]; then
     echo "Using root password provided by environment variable..."
