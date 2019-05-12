@@ -59,3 +59,6 @@ rm -f /boot/initrd.img-4.4.0-101-generic
 # The prime-select command fails if "/etc/default/grub" doesn't exist.
 touch /etc/default/grub
 prime-select intel
+
+# Increase the size of the linux console text.
+sed -i 's/FONTSIZE=.*/FONTSIZE="16x32"/g' /etc/default/console-setup

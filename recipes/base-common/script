@@ -83,3 +83,8 @@ rm /tmp/ripgrep.deb
 echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.conf
 # Lower swappiness
 echo "vm.swappiness = 10" >> /etc/sysctl.conf
+
+# Install bat, alt to cat
+wget --quiet https://github.com/sharkdp/bat/releases/download/v0.10.0/bat_0.10.0_amd64.deb -O /tmp/bat.deb
+gdebi -n /tmp/bat.deb
+rm /tmp/bat.deb
