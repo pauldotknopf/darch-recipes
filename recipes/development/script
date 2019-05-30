@@ -60,7 +60,7 @@ unzip -d /usr/bin /tmp/ngrok.zip
 rm /tmp/ngrok.zip
 
 # Install ffsend
-curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.34/ffsend-v0.2.34-linux-x64 > /usr/bin/ffsend
+curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.46/ffsend-v0.2.46-linux-x64-static > /usr/bin/ffsend
 chmod +x /usr/bin/ffsend
 
 # lldb
