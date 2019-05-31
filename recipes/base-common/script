@@ -15,7 +15,9 @@ apt-get install -y zsh \
     jq \
     git-lfs \
     gnome-keyring \
-    command-not-found
+    command-not-found \
+    tmux \
+    sqlite3 `#For zsh-histdb`
 
 # Install hstr
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3A9508A2CC6FC1EB
