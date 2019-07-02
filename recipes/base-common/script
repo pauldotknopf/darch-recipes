@@ -19,6 +19,11 @@ apt-get install -y zsh \
     tmux \
     sqlite3 `#For zsh-histdb`
 
+# Install tilix
+add-apt-repository ppa:webupd8team/terminix -y
+apt-get update
+apt-get install -y tilix
+
 # Install hstr
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3A9508A2CC6FC1EB
 echo "deb http://ppa.launchpad.net/ultradvorka/ppa/ubuntu bionic main" >> /etc/apt/sources.list
