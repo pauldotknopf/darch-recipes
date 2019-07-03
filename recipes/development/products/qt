@@ -23,4 +23,5 @@ apt-get install -y libfontconfig1-dev \
   libgstreamer-plugins-base1.0-dev \
   libgstreamer-plugins-base1.0-dev \
   libxkbcommon-dev \
-  libxcb-xinput-dev
+  libxcb-xinput-dev \
+  libhunspell-dev
