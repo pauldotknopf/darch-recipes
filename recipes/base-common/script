@@ -17,7 +17,8 @@ apt-get install -y zsh \
     gnome-keyring \
     command-not-found \
     tmux \
-    sqlite3 `#For zsh-histdb`
+    sqlite3 `#For zsh-histdb` \
+    thefuck
 
 # Install tilix
 add-apt-repository ppa:webupd8team/terminix -y
