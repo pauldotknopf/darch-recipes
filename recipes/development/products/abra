@@ -6,4 +6,7 @@ apt-get install -y mesa-common-dev \
     libgstreamer-plugins-base1.0-dev \
     libgstrtspserver-1.0-dev \
     libpulse-dev \
-    ffmpeg
+    ffmpeg \
+    libturbojpeg0-dev
+
+mkdir /data && sudo chmod +777 /data
