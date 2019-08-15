@@ -37,6 +37,7 @@ add-apt-repository "deb https://download.docker.com/linux/ubuntu bionic stable"
 apt-get install -y docker-ce
 systemctl enable docker
 usermod -aG docker pknopf
+apt-get install -y docker-compose
 
 # Install .NET Core
 wget --quiet https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
