@@ -95,3 +95,9 @@ rm /tmp/gotop.deb
 wget --quiet https://github.com/sharkdp/bat/releases/download/v0.10.0/bat_0.10.0_amd64.deb -O /tmp/bat.deb
 gdebi -n /tmp/bat.deb
 rm /tmp/bat.deb
+
+# Install fselect
+wget --quiet https://github.com/jhspetersson/fselect/releases/download/0.6.5/fselect-x86_64-linux-musl.gz -O /tmp/fselect.zip
+unzip -p /tmp/fselect.zip | gunzip > /usr/bin/fselect
+chmod +x /usr/bin/fselect
+rm /tmp/fselect.zip
