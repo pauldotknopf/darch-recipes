@@ -19,7 +19,8 @@ apt-get install -y zsh \
     tmux \
     sqlite3 `#For zsh-histdb` \
     thefuck \
-    unzip
+    unzip \
+    meson
 
 # Install tilix
 add-apt-repository ppa:webupd8team/terminix -y

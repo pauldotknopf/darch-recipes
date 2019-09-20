@@ -19,3 +19,12 @@ apt-get install -y gnome-calculator
 
 # Video codecs
 sudo apt-get install -y gstreamer1.0-{vaapi,libav} gstreamer1.0-plugins-{bad,good,ugly}
+
+# Install the yaru theme
+apt-get install -y sassc
+git clone --branch "19.10.2" --depth 1 https://github.com/ubuntu/yaru.git /tmp/yaru
+mkdir /tmp/yaru/build
+cd /tmp/yaru/build
+meson ..
+ninja install
+rm -r /tmp/yaru
