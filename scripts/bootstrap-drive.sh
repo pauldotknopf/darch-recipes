@@ -22,7 +22,7 @@ if [ ! -e "debs.tar.gz" ]; then
     debootstrap --verbose \
         --make-tarball=debs.tar.gz \
 	    --include=linux-image-generic,grub-efi \
-	    cosmic rootfs http://archive.ubuntu.com/ubuntu/
+	    bionic rootfs http://archive.ubuntu.com/ubuntu/
 fi
 
 # Create our hard disk
@@ -66,7 +66,7 @@ mount /dev/mapper/vg00-darchlib rootfs/var/lib/darch
 debootstrap --verbose \
     --unpack-tarball=$(pwd)/debs.tar.gz \
     --include=linux-image-generic,grub-efi \
-    cosmic rootfs http://archive.ubuntu.com/ubuntu/
+    bionic rootfs http://archive.ubuntu.com/ubuntu/
 
 # Generate fstab (removing comments and whitespace)
 genfstab -U -p rootfs | sed -e 's/#.*$//' -e '/^$/d' > rootfs/etc/fstab
