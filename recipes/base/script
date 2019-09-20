@@ -2,15 +2,14 @@
 . ../common
 
 # Add the official Ubuntu repositories.
-echo "deb http://us.archive.ubuntu.com/ubuntu/ disco multiverse universe main restricted" >> /etc/apt/sources.list
-echo "deb http://us.archive.ubuntu.com/ubuntu/ disco-updates multiverse universe main restricted" >> /etc/apt/sources.list
-echo "deb http://us.archive.ubuntu.com/ubuntu/ disco-backports main restricted universe multiverse" >> /etc/apt/sources.list
-echo "deb http://security.ubuntu.com/ubuntu disco-security restricted main universe multiverse" >> /etc/apt/sources.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic multiverse universe main restricted" >> /etc/apt/sources.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-updates multiverse universe main restricted" >> /etc/apt/sources.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ cosmic-backports main restricted universe multiverse" >> /etc/apt/sources.list
+echo "deb http://security.ubuntu.com/ubuntu cosmic-security restricted main universe multiverse" >> /etc/apt/sources.list
 
 apt-get update
 # The "linux-image-generic" gets held back for some reason.
 # The "--with-new-pkgs" forces the package to be upgraded.
-apt-mark hold linux-image-generic
 apt-get --with-new-pkgs upgrade -y
 
 # Remove all vmlinux/initrd from the boot.

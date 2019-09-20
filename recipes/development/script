@@ -33,14 +33,14 @@ mkdir -p /etc/docker
 touch /etc/docker/daemon.json
 echo "{\"experimental\": true, \"graph\": \"/var/lib/darch/docker\"}" | tee -a /etc/docker/daemon.json
 curl -Ls https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository "deb https://download.docker.com/linux/ubuntu disco stable"
+add-apt-repository "deb https://download.docker.com/linux/ubuntu bionic stable"
 apt-get install -y docker-ce
 systemctl enable docker
 usermod -aG docker pknopf
 apt-get install -y docker-compose
 
 # Install .NET Core
-wget --quiet https://packages.microsoft.com/config/ubuntu/19.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
+wget --quiet https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
 gdebi -n /tmp/dotnet.deb
 rm /tmp/dotnet.deb
 apt-get update
