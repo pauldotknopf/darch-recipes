@@ -10,6 +10,7 @@ echo "deb http://security.ubuntu.com/ubuntu disco-security restricted main unive
 apt-get update
 # The "linux-image-generic" gets held back for some reason.
 # The "--with-new-pkgs" forces the package to be upgraded.
+apt-mark hold linux-image-generic
 apt-get --with-new-pkgs upgrade -y
 
 # Remove all vmlinux/initrd from the boot.
