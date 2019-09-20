@@ -18,7 +18,8 @@ apt-get install -y zsh \
     command-not-found \
     tmux \
     sqlite3 `#For zsh-histdb` \
-    thefuck
+    thefuck \
+    unzip
 
 # Install tilix
 add-apt-repository ppa:webupd8team/terminix -y
