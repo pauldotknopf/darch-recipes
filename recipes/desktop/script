@@ -23,5 +23,6 @@ sudo apt-get install -y gstreamer1.0-{vaapi,libav} gstreamer1.0-plugins-{bad,goo
 # Install the yaru theme
 rm -rf communitheme
 unsquashfs -d communitheme communitheme-bionic-snap.sqsh
+tree
 cp -rp communitheme/share/* /usr/share
 rm -rf communitheme
