@@ -1,0 +1,7 @@
+Package:  *
+Pin: release o=LP-PPA-system76-pop
+Pin-Priority: -1
+
+Package:  pop-fonts pop-gnome-shell-theme pop-gtk-theme pop-icon-theme pop-theme pop-icon-theme-extra
+Pin: release o=LP-PPA-system76-pop
+Pin-Priority: 500
