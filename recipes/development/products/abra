@@ -7,6 +7,7 @@ apt-get install -y mesa-common-dev \
     libgstrtspserver-1.0-dev \
     libpulse-dev \
     ffmpeg \
-    libturbojpeg0-dev
+    libturbojpeg0-dev \
+    install printer-driver-cups-pdf
 
 mkdir /data && sudo chmod +777 /data
