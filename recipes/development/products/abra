@@ -8,6 +8,6 @@ apt-get install -y mesa-common-dev \
     libpulse-dev \
     ffmpeg \
     libturbojpeg0-dev \
-    install printer-driver-cups-pdf
+    printer-driver-cups-pdf
 
 mkdir /data && sudo chmod +777 /data
