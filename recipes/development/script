@@ -44,7 +44,7 @@ wget --quiet https://packages.microsoft.com/config/ubuntu/18.04/packages-microso
 gdebi -n /tmp/dotnet.deb
 rm /tmp/dotnet.deb
 apt-get update
-apt-get -y install dotnet-sdk-2.2 dotnet-sdk-3.0
+apt-get -y install dotnet-sdk-2.2 dotnet-sdk-3.1
 
 # Install gcloud tool
 export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
