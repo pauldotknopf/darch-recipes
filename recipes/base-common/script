@@ -85,6 +85,8 @@ rm /tmp/ripgrep.deb
 
 # Increase inotify limit
 echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.conf
+echo "fs.inotify.max_user_instances = 524288" >> /etc/sysctl.conf
+
 # Lower swappiness
 echo "vm.swappiness = 10" >> /etc/sysctl.conf
 
@@ -103,3 +105,8 @@ wget --quiet https://github.com/jhspetersson/fselect/releases/download/0.6.5/fse
 unzip -p /tmp/fselect.zip | gunzip > /usr/bin/fselect
 chmod +x /usr/bin/fselect
 rm /tmp/fselect.zip
+
+# Install caddyserver
+mkdir /tmp/caddy
+curl -Ls https://github.com/caddyserver/caddy/releases/download/v2.0.0-beta6/caddy2_beta6_linux_amd64 > /usr/bin/caddy
+chmod +x /usr/bin/caddy
