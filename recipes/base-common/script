@@ -110,3 +110,7 @@ rm /tmp/fselect.zip
 mkdir /tmp/caddy
 curl -Ls https://github.com/caddyserver/caddy/releases/download/v2.0.0-beta6/caddy2_beta6_linux_amd64 > /usr/bin/caddy
 chmod +x /usr/bin/caddy
+
+# Install broot
+curl -Ls https://dystroy.org/broot/download/x86_64-linux/broot > /usr/bin/broot
+chmod +x /usr/bin/broot
