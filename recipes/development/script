@@ -73,7 +73,12 @@ curl -Ls https://github.com/BoostIO/boost-releases/releases/download/v0.12.1/boo
 gdebi -n /tmp/boostnote.deb
 rm /tmp/boostnote.deb
 
-# Sype
+# Skype
 curl -Ls https://go.skype.com/skypeforlinux-64.deb > /tmp/skype.deb
 gdebi -n /tmp/skype.deb
 rm /tmp/skype.deb
+
+# cmake
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add -
+apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+apt-get install -y cmake
