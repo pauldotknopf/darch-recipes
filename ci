@@ -1,9 +1,23 @@
 #!/bin/bash
 set -e
 
-. ./build
+./build
 
-while read -r IMAGE; do
-    sudo darch images push --user $DOCKER_LOGIN_USERNAME:$DOCKER_LOGIN_PASSWORD pauldotknopf/darch-ubuntu-$IMAGE:$TAG
-    sudo darch images push --user $DOCKER_LOGIN_USERNAME:$DOCKER_LOGIN_PASSWORD pauldotknopf/darch-ubuntu-$IMAGE:latest
-done <<< "$IMAGES"
+TAG=`date +"%Y-%m-%d-%H%M%S"`
+
+docker tag pauldotknopf/darch-ubuntu-base pauldotknopf/darch-ubuntu-base:$TAG
+docker tag pauldotknopf/darch-ubuntu-base-common pauldotknopf/darch-ubuntu-base-common:$TAG
+docker tag pauldotknopf/darch-ubuntu-desktop pauldotknopf/darch-ubuntu-desktop:$TAG
+docker tag pauldotknopf/darch-ubuntu-development pauldotknopf/darch-ubuntu-development:$TAG
+
+docker login -u $DOCKER_LOGIN_USERNAME -p $DOCKER_LOGIN_PASSWORD
+
+docker push pauldotknopf/darch-ubuntu-base
+docker push pauldotknopf/darch-ubuntu-base-common
+docker push pauldotknopf/darch-ubuntu-desktop
+docker push pauldotknopf/darch-ubuntu-development
+
+docker push pauldotknopf/darch-ubuntu-base:$TAG
+docker push pauldotknopf/darch-ubuntu-base-common:$TAG
+docker push pauldotknopf/darch-ubuntu-desktop:$TAG
+docker push pauldotknopf/darch-ubuntu-development:$TAG

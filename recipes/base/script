@@ -1,5 +1,6 @@
 #!/bin/bash
-. ../common
+set -e
+export DEBIAN_FRONTEND=noninteractive
 
 # Add the official Ubuntu repositories.
 echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic multiverse universe main restricted" >> /etc/apt/sources.list
@@ -7,16 +8,14 @@ echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates multiverse univers
 echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse" >> /etc/apt/sources.list
 echo "deb http://security.ubuntu.com/ubuntu bionic-security restricted main universe multiverse" >> /etc/apt/sources.list
 
+# Add the docker repo
+echo "deb https://download.docker.com/linux/ubuntu bionic stable" >> /etc/apt/sources.list
+curl -Ls https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
 apt-get update
 # The "linux-image-generic" gets held back for some reason.
 # The "--with-new-pkgs" forces the package to be upgraded.
 apt-get --with-new-pkgs upgrade -y
-
-# Remove all vmlinux/initrd from the boot.
-# There may be many versions.
-rm -r /boot/*
-# Now reinstall the files to /boot.
-apt-cache depends linux-image-generic | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3 | xargs apt-get --reinstall install -y
 
 # Install Darch.
 apt-get install -y darch
@@ -50,10 +49,15 @@ apt-get install -y openssh-server
 # Add nvidia drivers (for my XPS 5970)
 add-apt-repository -y ppa:graphics-drivers/ppa
 apt-get install -y nvidia-driver-418 nvidia-modprobe
+
 # When running in Travis, the nvidia package will create an initrd for
 # the kernel version of the build host. I'm not sure why this is, but
 # it affects extracting the image for boot (later on), so delete it.
-rm -f /boot/initrd.img-4.4.0-101-generic
+# Remove all vmlinux/initrd from the boot.
+# There may be many versions.
+rm -r /boot/*
+# Now reinstall the files to /boot.
+apt-cache depends linux-image-generic | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3 | xargs apt-get --reinstall install -y
 
 # Use the intel driver on boot by default. The nvidia driver has issues with system resuming.
 # The prime-select command fails if "/etc/default/grub" doesn't exist.

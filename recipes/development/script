@@ -1,5 +1,6 @@
 #!/bin/bash
-. ../common
+set -e
+export DEBIAN_FRONTEND=noninteractive
 
 apt-get install -y build-essential \
     git \
@@ -32,8 +33,6 @@ rm /tmp/keybase.deb
 mkdir -p /etc/docker
 touch /etc/docker/daemon.json
 echo "{\"experimental\": true, \"graph\": \"/var/lib/darch/docker\"}" | tee -a /etc/docker/daemon.json
-curl -Ls https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository "deb https://download.docker.com/linux/ubuntu bionic stable"
 apt-get install -y docker-ce
 systemctl enable docker
 usermod -aG docker pknopf

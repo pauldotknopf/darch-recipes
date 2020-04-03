@@ -1,14 +1,18 @@
 #!/bin/bash
 set -e
 
-cd recipes
+cd recipes/base
+docker build . -t pauldotknopf/darch-ubuntu-base
+cd -
 
-IMAGES=$(sudo darch recipes build-dep)
-TAG=`date +"%Y-%m-%d-%H%M%S"`
+cd recipes/base-common
+docker build . -t pauldotknopf/darch-ubuntu-base-common
+cd -
 
-sudo darch recipes build \
-    -t "$TAG,latest" \
-    -p "pauldotknopf/darch-ubuntu-" \
-    -e ROOT_PASSWD=$ROOT_PASWD \
-    -e USER_PASSWD=$USER_PASSWD \
-    $IMAGES
+cd recipes/desktop
+docker build . -t pauldotknopf/darch-ubuntu-desktop
+cd -
+
+cd recipes/development
+docker build . -t pauldotknopf/darch-ubuntu-development
+cd -
