@@ -2,17 +2,17 @@
 set -e
 
 cd recipes/base
-docker build . -t pauldotknopf/darch-ubuntu-base
+docker build . -t pauldotknopf/darch-ubuntu-base --build-arg ROOT_PASSWD=$ROOT_PASSWD --build-arg USER_PASSWD=$USER_PASSWD
 cd -
 
 cd recipes/base-common
-docker build . -t pauldotknopf/darch-ubuntu-base-common
+docker build . -t pauldotknopf/darch-ubuntu-base-common --build-arg ROOT_PASSWD=$ROOT_PASSWD --build-arg USER_PASSWD=$USER_PASSWD
 cd -
 
 cd recipes/desktop
-docker build . -t pauldotknopf/darch-ubuntu-desktop
+docker build . -t pauldotknopf/darch-ubuntu-desktop --build-arg ROOT_PASSWD=$ROOT_PASSWD --build-arg USER_PASSWD=$USER_PASSWD
 cd -
 
 cd recipes/development
-docker build . -t pauldotknopf/darch-ubuntu-development
+docker build . -t pauldotknopf/darch-ubuntu-development --no-cache --build-arg ROOT_PASSWD=$ROOT_PASSWD --build-arg USER_PASSWD=$USER_PASSWD
 cd -

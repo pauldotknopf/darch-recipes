@@ -10,7 +10,7 @@ docker tag pauldotknopf/darch-ubuntu-base-common pauldotknopf/darch-ubuntu-base-
 docker tag pauldotknopf/darch-ubuntu-desktop pauldotknopf/darch-ubuntu-desktop:$TAG
 docker tag pauldotknopf/darch-ubuntu-development pauldotknopf/darch-ubuntu-development:$TAG
 
-#docker login -u $DOCKER_LOGIN_USERNAME -p $DOCKER_LOGIN_PASSWORD
+docker login -u $DOCKER_LOGIN_USERNAME -p $DOCKER_LOGIN_PASSWORD
 
 docker push pauldotknopf/darch-ubuntu-base
 docker push pauldotknopf/darch-ubuntu-base-common
