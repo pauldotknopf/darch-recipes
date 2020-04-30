@@ -2,6 +2,9 @@
 set -e
 export DEBIAN_FRONTEND=noninteractive
 
+# We never want to cache any packages.
+echo -e 'Dir::Cache "";\nDir::Cache::archives "";' | tee /etc/apt/apt.conf.d/00_disable-cache-directories
+
 # Add the official Ubuntu repositories.
 echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic multiverse universe main restricted" >> /etc/apt/sources.list
 echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates multiverse universe main restricted" >> /etc/apt/sources.list
