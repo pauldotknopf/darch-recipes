@@ -9,9 +9,6 @@ done < "./blacklist-packages"
 
 tasksel install ubuntu-desktop
 
-# The gdm service tries to use Wayland for some reason... so disable it.
-sed -i '/WaylandEnable/s/^#//g' /etc/gdm3/custom.conf
-
 # Install fusuma so that we can use gestures to switch apps.
 apt-get install -y ruby libinput-tools xdotool
 gem install fusuma
@@ -20,10 +17,5 @@ apt-get install -y gnome-calculator
 
 # Video codecs
 sudo apt-get install -y gstreamer1.0-{vaapi,libav} gstreamer1.0-plugins-{bad,good,ugly}
-
-# Use pop repo for the theme
-cp pop.pref /etc/apt/preferences.d/
-apt-add-repository -y ppa:system76/pop
-apt-get install -y pop-theme pop-icon-theme-extra gnome-shell-extensions
 
 apt-get clean

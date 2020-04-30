@@ -2,27 +2,23 @@
 set -e
 export DEBIAN_FRONTEND=noninteractive
 
-# Add golang backport for go 1.14
-add-apt-repository -y ppa:longsleep/golang-backports && apt-get update
-
 apt-get install -y build-essential \
     git \
     golang
 
-./products/qt
-./products/libimobiledevice
-./products/abra
+# ./products/qt
+# ./products/libimobiledevice
+# ./products/abra
 
 # Install nodejs
 curl -Ls https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz | unxz | tar --strip-components=1 -xpf - -C /usr 
 
 # Use the gnome-keyring with git
-apt-get install -y libgnome-keyring-dev
-make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
-git config --global credential.helper /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+# apt-get install -y libgnome-keyring-dev
+# make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
+# git config --global credential.helper /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
 
 # Install GitKraken
-apt install -y libgnome-keyring-common libgnome-keyring-dev
 wget --quiet https://release.gitkraken.com/linux/gitkraken-amd64.deb -O /tmp/gitkraken.deb
 gdebi -n /tmp/gitkraken.deb
 rm /tmp/gitkraken.deb
@@ -36,23 +32,23 @@ rm /tmp/keybase.deb
 mkdir -p /etc/docker
 touch /etc/docker/daemon.json
 echo "{\"experimental\": true, \"graph\": \"/var/lib/darch/docker\"}" | tee -a /etc/docker/daemon.json
-apt-get install -y docker-ce
+apt-get install -y containerd docker.io
 systemctl enable docker
 usermod -aG docker pknopf
 apt-get install -y docker-compose
 
 # Install .NET Core
-wget --quiet https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
+wget --quiet https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
 gdebi -n /tmp/dotnet.deb
 rm /tmp/dotnet.deb
-apt-get update
-apt-get -y install dotnet-sdk-2.2 dotnet-sdk-3.1
+mkdir /usr/share/dotnet
+curl -Ls wget https://download.visualstudio.microsoft.com/download/pr/f65a8eb0-4537-4e69-8ff3-1a80a80d9341/cc0ca9ff8b9634f3d9780ec5915c1c66/dotnet-sdk-3.1.201-linux-x64.tar.gz | tar -xpzf - -C /usr/share/dotnet
 
 # Install gcloud tool
-export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-curl -Ls https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-apt-get update && sudo apt-get install -y google-cloud-sdk
+# export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+# echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+# curl -Ls https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+# apt-get update && sudo apt-get install -y google-cloud-sdk
 
 # Install gotty
 curl -Ls https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz | tar zxf - -C /usr/bin
@@ -67,11 +63,11 @@ curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.46/ffsend-v0.
 chmod +x /usr/bin/ffsend
 
 # lldb
-apt-get install -y lldb-7
-ln -s /usr/bin/lldb-7 /usr/bin/lldb
+apt-get install -y lldb-9
+ln -s /usr/bin/lldb-9 /usr/bin/lldb
 
 # boostnote
-curl -Ls https://github.com/BoostIO/boost-releases/releases/download/v0.12.1/boostnote_0.12.1_amd64.deb > /tmp/boostnote.deb
+curl -Ls https://github.com/BoostIO/BoostNote.next/releases/download/v0.4.1/boost-note-linux.deb > /tmp/boostnote.deb
 gdebi -n /tmp/boostnote.deb
 rm /tmp/boostnote.deb
 
@@ -79,10 +75,5 @@ rm /tmp/boostnote.deb
 curl -Ls https://go.skype.com/skypeforlinux-64.deb > /tmp/skype.deb
 gdebi -n /tmp/skype.deb
 rm /tmp/skype.deb
-
-# cmake
-wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add -
-apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-apt-get install -y cmake
 
 apt-get clean
