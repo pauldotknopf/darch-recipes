@@ -14,5 +14,5 @@ docker build . -t pauldotknopf/darch-ubuntu-desktop --build-arg ROOT_PASSWD=$ROO
 cd -
 
 cd recipes/development
-docker build . -t pauldotknopf/darch-ubuntu-development --no-cache --build-arg ROOT_PASSWD=$ROOT_PASSWD --build-arg USER_PASSWD=$USER_PASSWD
+docker build . -t pauldotknopf/darch-ubuntu-development --build-arg ROOT_PASSWD=$ROOT_PASSWD --build-arg USER_PASSWD=$USER_PASSWD
 cd -
