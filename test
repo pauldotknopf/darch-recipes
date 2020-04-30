@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+./build
+
+TAG=`date +"%Y-%m-%d-%H%M%S"`
+
+docker tag pauldotknopf/darch-ubuntu-development pauldotknopf/darch-ubuntu-development:testing-$TAG
+docker push pauldotknopf/darch-ubuntu-development:testing-$TAG
