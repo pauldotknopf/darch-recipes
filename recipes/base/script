@@ -69,5 +69,3 @@ prime-select intel
 
 # Increase the size of the linux console text.
 sed -i 's/FONTSIZE=.*/FONTSIZE="16x32"/g' /etc/default/console-setup
-
-apt-get clean
