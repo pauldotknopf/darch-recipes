@@ -27,11 +27,6 @@ wget --quiet https://release.gitkraken.com/linux/gitkraken-amd64.deb -O /tmp/git
 gdebi -n /tmp/gitkraken.deb
 rm /tmp/gitkraken.deb
 
-# Install KeyBase
-wget --quiet https://prerelease.keybase.io/keybase_amd64.deb -O /tmp/keybase.deb
-gdebi -n /tmp/keybase.deb
-rm /tmp/keybase.deb
-
 # Install Docker
 mkdir -p /etc/docker
 touch /etc/docker/daemon.json
@@ -80,11 +75,6 @@ ln -s /usr/bin/lldb-7 /usr/bin/lldb
 curl -Ls https://github.com/BoostIO/boost-releases/releases/download/v0.12.1/boostnote_0.12.1_amd64.deb > /tmp/boostnote.deb
 gdebi -n /tmp/boostnote.deb
 rm /tmp/boostnote.deb
-
-# Skype
-curl -Ls https://go.skype.com/skypeforlinux-64.deb > /tmp/skype.deb
-gdebi -n /tmp/skype.deb
-rm /tmp/skype.deb
 
 # cmake
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add -
