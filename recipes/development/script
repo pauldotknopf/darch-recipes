@@ -54,8 +54,9 @@ echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /e
 curl -Ls https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 apt-get update && sudo apt-get install -y google-cloud-sdk
 
-# Install gotty
-curl -Ls https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz | tar zxf - -C /usr/bin
+# Install ttyd
+curl -Ls https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd_linux.x86_64 > /usr/bin/ttyd
+chmod +x /usr/bin/ttyd
 
 # Install ngrok
 wget --quiet https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O /tmp/ngrok.zip
@@ -65,6 +66,11 @@ rm /tmp/ngrok.zip
 # Install ffsend
 curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.46/ffsend-v0.2.46-linux-x64-static > /usr/bin/ffsend
 chmod +x /usr/bin/ffsend
+
+# Install delta (for diffs)
+curl -Ls https://github.com/dandavison/delta/releases/download/0.1.1/git-delta_0.1.1_amd64.deb > /tmp/delta.deb
+gdebi -n /tmp/delta.deb
+rm /tmp/delta.deb
 
 # lldb
 apt-get install -y lldb-7
