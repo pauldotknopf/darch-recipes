@@ -1,5 +1,6 @@
 sudo: required
 services:
   - docker
+install: travis_wait 5 mvn install
 script:
 - "./ci"
