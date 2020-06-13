@@ -2,4 +2,5 @@ sudo: required
 services:
   - docker
 script:
-- "travis_wait ./ci"
+- pip install git+https://github.com/naftulikay/travis-pls
+- travis-pls ./ci
