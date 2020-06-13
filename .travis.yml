@@ -2,5 +2,5 @@ sudo: required
 services:
   - docker
 script:
-- sudo pip install git+https://github.com/naftulikay/travis-pls
-- travis-pls ./ci
+- ./ci &
+- while [ -e /proc/$! ]; do echo -n "."  && sleep 60; done
