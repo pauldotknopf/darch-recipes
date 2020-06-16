@@ -25,11 +25,6 @@ apt-get install -y zsh \
     mosh \
     tmate
 
-# Install tilix
-add-apt-repository ppa:webupd8team/terminix -y
-apt-get update
-apt-get install -y tilix
-
 # Set the root password
 if [ -n  "$ROOT_PASSWD" ]; then
     echo "Using root password provided by environment variable..."

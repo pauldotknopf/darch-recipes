@@ -2,9 +2,6 @@
 set -e
 export DEBIAN_FRONTEND=noninteractive
 
-# Add golang backport for go 1.14
-add-apt-repository -y ppa:longsleep/golang-backports && apt-get update
-
 apt-get install -y build-essential \
     git \
     golang
@@ -16,13 +13,11 @@ apt-get install -y build-essential \
 # Install nodejs
 curl -Ls https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz | unxz | tar --strip-components=1 -xpf - -C /usr 
 
-# Use the gnome-keyring with git
-apt-get install -y libgnome-keyring-dev
-make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
-git config --global credential.helper /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+# Setup libsecret for use with git
+apt-get install libsecret-1-0 libsecret-1-dev libglib2.0-dev
+make --directory=/usr/share/doc/git/contrib/credential/libsecret
 
 # Install GitKraken
-apt install -y libgnome-keyring-common libgnome-keyring-dev
 wget --quiet https://release.gitkraken.com/linux/gitkraken-amd64.deb -O /tmp/gitkraken.deb
 gdebi -n /tmp/gitkraken.deb
 rm /tmp/gitkraken.deb
@@ -37,17 +32,11 @@ usermod -aG docker pknopf
 apt-get install -y docker-compose
 
 # Install .NET Core
-wget --quiet https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
+wget --quiet https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
 gdebi -n /tmp/dotnet.deb
 rm /tmp/dotnet.deb
 apt-get update
-apt-get -y install dotnet-sdk-2.2 dotnet-sdk-3.1
-
-# Install gcloud tool
-export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-curl -Ls https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-apt-get update && sudo apt-get install -y google-cloud-sdk
+apt-get -y install dotnet-sdk-3.1
 
 # Install ttyd
 curl -Ls https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd_linux.x86_64 > /usr/bin/ttyd
@@ -63,20 +52,21 @@ curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.46/ffsend-v0.
 chmod +x /usr/bin/ffsend
 
 # Install delta (for diffs)
-curl -Ls https://github.com/dandavison/delta/releases/download/0.1.1/git-delta_0.1.1_amd64.deb > /tmp/delta.deb
-gdebi -n /tmp/delta.deb
-rm /tmp/delta.deb
+# curl -Ls https://github.com/dandavison/delta/releases/download/0.1.1/git-delta_0.1.1_amd64.deb > /tmp/delta.deb
+# gdebi -n /tmp/delta.deb
+# rm /tmp/delta.deb
 
 # lldb
-apt-get install -y lldb-7
-ln -s /usr/bin/lldb-7 /usr/bin/lldb
+#apt-get install -y lldb-7
+#ln -s /usr/bin/lldb-7 /usr/bin/lldb
 
 # boostnote
-curl -Ls https://github.com/BoostIO/boost-releases/releases/download/v0.12.1/boostnote_0.12.1_amd64.deb > /tmp/boostnote.deb
-gdebi -n /tmp/boostnote.deb
-rm /tmp/boostnote.deb
+# Note working on Ubuntu 20
+#curl -Ls https://github.com/BoostIO/boost-releases/releases/download/v0.12.1/boostnote_0.12.1_amd64.deb > /tmp/boostnote.deb
+#gdebi -n /tmp/boostnote.deb
+#rm /tmp/boostnote.deb
 
 # cmake
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add -
-apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
 apt-get install -y cmake

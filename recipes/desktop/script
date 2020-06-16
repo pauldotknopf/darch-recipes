@@ -24,4 +24,4 @@ sudo apt-get install -y gstreamer1.0-{vaapi,libav} gstreamer1.0-plugins-{bad,goo
 # Use pop repo for the theme
 cp pop.pref /etc/apt/preferences.d/
 apt-add-repository -y ppa:system76/pop
-apt-get install -y pop-theme pop-icon-theme-extra gnome-shell-extensions
+apt-get install -y pop-theme gnome-shell-extensions

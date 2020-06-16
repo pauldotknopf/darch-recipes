@@ -1,4 +1,4 @@
-FROM godarch/ubuntu:bionic
+FROM godarch/ubuntu:focal
 
 ADD script /scripts/script
 ADD network.yaml /scripts/network.yaml
