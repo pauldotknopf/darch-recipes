@@ -23,7 +23,8 @@ apt-get install -y zsh \
     unzip \
     meson \
     mosh \
-    tmate
+    tmate \
+    dconf-editor
 
 # Set the root password
 if [ -n  "$ROOT_PASSWD" ]; then
