@@ -27,4 +27,4 @@ apt-add-repository -y ppa:system76/pop
 apt-get install -y pop-theme gnome-shell-extensions
 
 # I use this for VPN access
-apt-get install -y network-manager-openconnect
+apt-get install -y network-manager-openconnect network-manager-openconnect-gnome
