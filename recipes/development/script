@@ -53,6 +53,9 @@ rm /tmp/ngrok.zip
 curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.46/ffsend-v0.2.46-linux-x64-static > /usr/bin/ffsend
 chmod +x /usr/bin/ffsend
 
+# Install virtualbox
+apt-get install -y virtualbox
+
 # Install delta (for diffs)
 # curl -Ls https://github.com/dandavison/delta/releases/download/0.1.1/git-delta_0.1.1_amd64.deb > /tmp/delta.deb
 # gdebi -n /tmp/delta.deb
