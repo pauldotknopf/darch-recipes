@@ -31,7 +31,7 @@ echo "{\"experimental\": true, \"graph\": \"/var/lib/darch/docker\"}" | tee -a /
 apt-get install -y docker-ce
 systemctl enable docker
 usermod -aG docker pknopf
-apt-get install -y docker-compose
+apt-get install -y docker-compose golang-docker-credential-helpers
 
 # Install .NET Core
 wget --quiet https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O /tmp/dotnet.deb
