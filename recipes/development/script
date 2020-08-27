@@ -53,8 +53,11 @@ rm /tmp/ngrok.zip
 curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.46/ffsend-v0.2.46-linux-x64-static > /usr/bin/ffsend
 chmod +x /usr/bin/ffsend
 
-# Install virtualbox
-apt-get install -y virtualbox
+# Install VMWare
+wget --quiet https://download3.vmware.com/software/player/file/VMware-Player-15.5.6-16341506.x86_64.bundle -O /tmp/vmware.bundle
+chmod +x /tmp/vmware.bundle
+echo -ne '\n\n\n' | /tmp/vmware.bundle --console --eulas-agreed
+rm /tmp/vmware.bundle
 
 # Install delta (for diffs)
 # curl -Ls https://github.com/dandavison/delta/releases/download/0.1.1/git-delta_0.1.1_amd64.deb > /tmp/delta.deb
