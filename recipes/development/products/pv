@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+apt-get install \
+    protobuf-compiler-grpc \
+    libprotobuf-dev \
+    libgrpc++-dev \
+    libdcmtk-dev \
+    systemd \
+    libsystemd-dev

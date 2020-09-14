@@ -11,6 +11,7 @@ apt-get install -y build-essential \
 ./products/qt
 ./products/libimobiledevice
 ./products/abra
+./products/pv
 
 # Install nodejs
 curl -Ls https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz | unxz | tar --strip-components=1 -xpf - -C /usr 
