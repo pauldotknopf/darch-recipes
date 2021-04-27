@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-apt-get install \
+apt-get install -y \
     protobuf-compiler-grpc \
     libprotobuf-dev \
     libgrpc++-dev \
