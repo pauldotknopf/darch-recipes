@@ -40,7 +40,7 @@ wget --quiet https://packages.microsoft.com/config/ubuntu/20.04/packages-microso
 gdebi -n /tmp/dotnet.deb
 rm /tmp/dotnet.deb
 apt-get update
-apt-get -y install dotnet-sdk-3.1
+apt-get -y install dotnet-sdk-5.0
 
 # Install ttyd
 curl -Ls https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd_linux.x86_64 > /usr/bin/ttyd
@@ -77,6 +77,6 @@ rm /tmp/vmware.bundle
 #rm /tmp/boostnote.deb
 
 # cmake
-wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add -
-apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-apt-get install -y cmake
+# wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add -
+# apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+# apt-get install -y cmake
