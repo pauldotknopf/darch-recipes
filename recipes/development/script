@@ -4,18 +4,23 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get install -y build-essential \
     git \
-    golang \
     aptitude \
-    pbuilder
+    pbuilder \
+    pv \
+    cmake
 
-./products/qt
-./products/libimobiledevice
-./products/abra
-./products/pv
-./products/dicom
+# Install golang from upstream
+curl -Ls https://go.dev/dl/go1.16.13.linux-amd64.tar.gz | sudo tar -C /usr/local -xzf -
+sudo ln -s /usr/local/go/bin/go /usr/bin/go
+
+# ./products/qt
+# ./products/libimobiledevice
+# ./products/abra
+# ./products/pv
+# ./products/dicom
 
 # Install nodejs
-curl -Ls https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz | unxz | tar --strip-components=1 -xpf - -C /usr 
+curl -Ls https://nodejs.org/dist/v16.14.0/node-v16.14.0-linux-x64.tar.xz | unxz | tar --strip-components=1 -xpf - -C /usr 
 
 # Setup libsecret for use with git
 apt-get install -y libsecret-1-0 libsecret-1-dev libglib2.0-dev
@@ -52,31 +57,16 @@ unzip -d /usr/bin /tmp/ngrok.zip
 rm /tmp/ngrok.zip
 
 # Install ffsend
-curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.46/ffsend-v0.2.46-linux-x64-static > /usr/bin/ffsend
+curl -Ls https://github.com/timvisee/ffsend/releases/download/v0.2.74/ffsend-v0.2.74-linux-x64-static > /usr/bin/ffsend
 chmod +x /usr/bin/ffsend
 
 # Install VMWare
-wget --quiet https://download3.vmware.com/software/player/file/VMware-Player-15.5.6-16341506.x86_64.bundle -O /tmp/vmware.bundle
+wget --quiet https://download3.vmware.com/software/player/file/VMware-Player-Full-16.2.1-18811642.x86_64.bundle -O /tmp/vmware.bundle
 chmod +x /tmp/vmware.bundle
 echo -ne '\n\n\n' | /tmp/vmware.bundle --console --eulas-agreed
 rm /tmp/vmware.bundle
 
-# Install delta (for diffs)
-# curl -Ls https://github.com/dandavison/delta/releases/download/0.1.1/git-delta_0.1.1_amd64.deb > /tmp/delta.deb
-# gdebi -n /tmp/delta.deb
-# rm /tmp/delta.deb
-
-# lldb
-#apt-get install -y lldb-7
-#ln -s /usr/bin/lldb-7 /usr/bin/lldb
-
-# boostnote
-# Note working on Ubuntu 20
-#curl -Ls https://github.com/BoostIO/boost-releases/releases/download/v0.12.1/boostnote_0.12.1_amd64.deb > /tmp/boostnote.deb
-#gdebi -n /tmp/boostnote.deb
-#rm /tmp/boostnote.deb
-
 # cmake
-# wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | apt-key add -
-# apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-# apt-get install -y cmake
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+apt-get install -y cmake
