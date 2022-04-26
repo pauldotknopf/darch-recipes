@@ -7,7 +7,8 @@ apt-get install -y build-essential \
     aptitude \
     pbuilder \
     pv \
-    cmake
+    cmake \
+    python
 
 # Install golang from upstream
 curl -Ls https://go.dev/dl/go1.16.13.linux-amd64.tar.gz | sudo tar -C /usr/local -xzf -
@@ -68,5 +69,5 @@ rm /tmp/vmware.bundle
 
 # cmake
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-apt-get install -y cmake
+echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+apt-get update && apt-get install -y cmake
