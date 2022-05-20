@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+. ./.priv
+
 ./build
 
 TAG=`date +"%Y-%m-%d-%H%M%S"`
